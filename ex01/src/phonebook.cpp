@@ -50,13 +50,12 @@ void	PhoneBook::display_oneline(int order)
 	int idx = (head_idx + (order - 1)) % size;
 	if(idx < NbAdd)
 	{
-		std::cout << MAGENTA << order << COLON;
+		std::cout	<< MAGENTA
+					<< std::setw(10) << order << "|";
 		display_tenw(contacts[idx].getFirstName(), "|");
 		display_tenw(contacts[idx].getLastName(), "|");
-		display_tenw(contacts[idx].getNickName(), "|");
-		display_tenw(contacts[idx].getPhoneNumber(), "|");
-		display_tenw(contacts[idx].getDarkestSecret(), "");
-		std::cout << RESET << std::endl;
+		display_tenw(contacts[idx].getNickName(), "");
+		std::cout 	<< RESET << std::endl;
 	}
 }
 
