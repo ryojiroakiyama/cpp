@@ -2,14 +2,25 @@
 #include <iostream>
 #include <iomanip>
 
-int	Account::_nbAccounts = 0;
-int	Account::_totalAmount = 0;
-int	Account::_totalNbDeposits = 0;
-int	Account::_totalNbWithdrawals = 0;
+int	Account::getNbAccounts() { return _nbAccounts; }
+int Account::getTotalAmount() { return _totalAmount; }
+int Account::getNbDeposits(){ return _totalNbDeposits; }
+int Account::getNbWithdrawals(){ return _totalNbWithdrawals; }
 
-Account::Account(int initial_deposit)
-: _accountIndex(_nbAccounts++), _amount(initial_deposit),
-  _nbDeposits(0),	_nbWithdrawals(0)
+void	Account::displayAccountsInfos()
+{
+	_displayTimestamp();
+	std::cout	<< "accounts:" << getNbAccounts() << ";"
+				<< "total:" << getTotalAmount() << ";"
+				<< "deposits:" << getNbDeposits() << ";"
+				<< "withdrawals:" << getNbWithdrawals()
+				<< std::endl;
+}
+
+Account::Account(int initial_deposit)	:	_accountIndex(_nbAccounts++), 
+											_amount(initial_deposit),
+											_nbDeposits(0),	
+											_nbWithdrawals(0)
 {
 	_displayTimestamp();
 	std::cout	<< "index:" << _accountIndex << ";"
@@ -23,48 +34,8 @@ Account::~Account()
 {
 	_displayTimestamp();
 	std::cout	<< "index:" << _accountIndex << ";"
-				<< "amount:" << checkAmount() << ";"
-				<< "closed"
-				<< std::endl;
-}
-
-void	Account::_displayTimestamp()
-{
-	time_t		current = time(0);
-	const tm*	local = localtime(&current);
-	std::cout	<< "["
-				<< local->tm_year + 1900
-				<< std::setw(2) << std::setfill('0')
-				<< local->tm_mon + 1
-				<< std::setw(2) << std::setfill('0')
-				<< local->tm_mday
-				<< "_"
-				<< std::setw(2) << std::setfill('0')
-				<< local->tm_hour
-				<< std::setw(2) << std::setfill('0')
-				<< local->tm_min
-				<< std::setw(2) << std::setfill('0')
-				<< local->tm_sec
-				<< "] ";
-}
-
-void	Account::displayAccountsInfos()
-{
-	_displayTimestamp();
-	std::cout	<< "accounts:" << getNbAccounts() << ";"
-				<< "total:" << getTotalAmount() << ";"
-				<< "deposits:" << getNbDeposits() << ";"
-				<< "withdrawals:" << getNbWithdrawals()
-				<< std::endl;
-}
-
-void	Account::displayStatus() const
-{
-	_displayTimestamp();
-	std::cout	<< "index:" << _accountIndex << ";"
 				<< "amount:" << _amount << ";"
-				<< "deposits:" << _nbDeposits << ";"
-				<< "withdrawals:" << _nbWithdrawals
+				<< "closed"
 				<< std::endl;
 }
 
@@ -113,22 +84,48 @@ int	Account::checkAmount() const
 	return _amount;
 }
 
-int	Account::getNbAccounts()
+void	Account::displayStatus() const
 {
-	return _nbAccounts;
+	_displayTimestamp();
+	std::cout	<< "index:" << _accountIndex << ";"
+				<< "amount:" << _amount << ";"
+				<< "deposits:" << _nbDeposits << ";"
+				<< "withdrawals:" << _nbWithdrawals
+				<< std::endl;
 }
 
-int Account::getTotalAmount()
+int	Account::_nbAccounts = 0;
+int	Account::_totalAmount = 0;
+int	Account::_totalNbDeposits = 0;
+int	Account::_totalNbWithdrawals = 0;
+
+void	Account::_displayTimestamp()
 {
-	return _totalAmount;
+	time_t		current = time(0);
+	const tm*	local = localtime(&current);
+	std::cout	<< "["
+				<< local->tm_year + 1900
+				<< std::setw(2) << std::setfill('0')
+				<< local->tm_mon + 1
+				<< std::setw(2) << std::setfill('0')
+				<< local->tm_mday
+				<< "_"
+				<< std::setw(2) << std::setfill('0')
+				<< local->tm_hour
+				<< std::setw(2) << std::setfill('0')
+				<< local->tm_min
+				<< std::setw(2) << std::setfill('0')
+				<< local->tm_sec
+				<< "] ";
 }
 
-int Account::getNbDeposits()
+Account::Account()	:	_accountIndex(_nbAccounts++), _amount(0),
+						_nbDeposits(0),	_nbWithdrawals(0)
 {
-	return _totalNbDeposits;
-}
-
-int Account::getNbWithdrawals()
-{
-	return _totalNbWithdrawals;
+	_displayTimestamp();
+	std::cout	<< "index:" << _accountIndex << ";"
+				<< "amount:" << _amount << ";"
+				<< "created"
+				<< std::endl;
+	_totalAmount += _amount;
 }
