@@ -4,7 +4,7 @@
 #include <iomanip>
 #include <string.h>
 
-PhoneBook::PhoneBook() : head_idx(0), last_idx(0), size(8)
+PhoneBook::PhoneBook() : head_idx(0), last_idx(-1), size(8)
 {
 }
 
@@ -25,14 +25,19 @@ std::string	PhoneBook::get_input(std::string item, int width)
 
 void	PhoneBook::add()
 {
+	if (last_idx == -1)
+		last_idx = 0;
+	else
+	{
+		last_idx = ++last_idx % size;
+		if (last_idx == head_idx)
+			head_idx = ++head_idx % size;
+	}
 	contacts[last_idx].setFirstName(get_input(FNAME+COLON, 15));
 	contacts[last_idx].setLastName(get_input(LNAME+COLON, 15));
 	contacts[last_idx].setNickName(get_input(NNAME+COLON, 15));
 	contacts[last_idx].setPhoneNumber(get_input(PNUM+COLON, 15));
 	contacts[last_idx].setDarkestSecret(get_input(DSECRET+COLON, 15));
-	last_idx = ++last_idx % size;
-	if (last_idx == head_idx)
-		head_idx = ++head_idx % size;
 }
 
 void	PhoneBook::display_tenw(std::string content, std::string separate)
@@ -79,7 +84,7 @@ void	PhoneBook::search()
 {
 	int order;
 
-	if (head_idx == last_idx)
+	if (last_idx == -1)
 	{
 		std::cout << RED << "phonebook is empty" << RESET << std::endl;
 		return ;
