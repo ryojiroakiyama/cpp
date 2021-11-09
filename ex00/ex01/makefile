@@ -1,22 +1,26 @@
-NAME = megaphone
-CXX = clang++
-CXXFLAGS = -Wall -Werror -Wextra -std=c++98 -pedantic -MMD -MP
--include $(depends)
-depends = $(objs:.o=.d)
-
-srcs = megaphone.cpp
-objs = $(srcs:.cpp=.o)
+NAME		=	megaphone
+CXX			=	clang++
+CXXFLAGS	=	-Wall -Werror -Wextra -std=c++98 -pedantic -MMD -MP -I $(INCDIR)
+INCDIR		=	./include
+SRCDIR		=	./src
+SRCNAME		=	main.cpp \
+				contact.cpp \
+				phonebook.cpp
+SRCS		=	$(addprefix $(SRCDIR)/, $(SRCNAME))
+OBJS		=	$(SRCS:.cpp=.o)
+DEPS		=	$(OBJS:.o=.d)
+-include $(DEPS)
 
 .PHONY: all
 all: $(NAME)
 
-$(NAME): $(objs)
-	$(CXX) $(CXXFLAGS) -o $(NAME) $(objs)
+$(NAME): $(OBJS)
+	$(CXX) $(CXXFLAGS) -o $(NAME) $(OBJS)
 
 .PHONY: clean
 clean:
 	$(RM) -rf *.dSYM
-	$(RM) -rf $(objs) $(depends)
+	$(RM) -rf $(OBJS) $(DEPS)
 
 .PHONY: fclean
 fclean: clean
