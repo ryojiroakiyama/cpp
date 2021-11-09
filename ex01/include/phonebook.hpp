@@ -14,7 +14,7 @@ class PhoneBook
 	private:
 		Contact 	contacts[8];
 		int			head_idx;
-		int			last_idx;
+		int			NbAdd;
 		int			size;
 		std::string	get_input(std::string item, int width);
 		void		display_tenw(std::string content, std::string separate);

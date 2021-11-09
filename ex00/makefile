@@ -1,7 +1,6 @@
 NAME = megaphone
 CXX = clang++
 CXXFLAGS = -Wall -Werror -Wextra -std=c++98 -pedantic -MMD -MP
--include $(DEPS)
 DEPS = $(OBJS:.o=.d)
 SRCS = megaphone.cpp
 OBJS = $(SRCS:.cpp=.o)
@@ -24,6 +23,12 @@ fclean: clean
 .PHONY: re
 re: fclean all
 
+.PHONY: test
+test: $(NAME)
+	./test.sh
+
 .PHONY: debug
 debug: CXXFLAGS += -g -fsanitize=integer -fsanitize=address -fsanitize=leak
 debug: re
+
+-include $(DEPS)
