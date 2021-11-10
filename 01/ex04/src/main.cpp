@@ -18,6 +18,7 @@ void	replace(std::string& src,
 	}
 }
 
+/* infile : test.txt -> outfile : test.replace
 std::string	file_name(std::string outfile)
 {
 	std::size_t	dot		= outfile.rfind('.'),
@@ -28,6 +29,7 @@ std::string	file_name(std::string outfile)
 	outfile.append(".replace");
 	return outfile;
 }
+*/
 
 int	main(int argc, char *argv[])
 {
@@ -36,7 +38,7 @@ int	main(int argc, char *argv[])
 		if (argc != 4 || !argv[1][0] || !argv[2][0] || !argv[3][0])
 			throw "argumet error";
 		std::string		infile(argv[1]),
-						outfile(file_name(infile)),
+						outfile(infile + static_cast<std::string>(".replace")),
 						s1(argv[2]),
 						s2(argv[3]);
 		std::ifstream	instream(infile);

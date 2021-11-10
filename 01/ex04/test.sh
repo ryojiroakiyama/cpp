@@ -16,7 +16,7 @@ RESET="\033[0m"
 printf "${GREEN}5 arguments${RESET}\n"
 ./replace files/test1.txt ryojiro akiyama bbbbbbb
 
-printf "${GREEN}file don't exist${RESET}\n"
+printf "${GREEN}file dose not exist${RESET}\n"
 ./replace files/no_file ryojiro akiyama
 
 printf "${GREEN}test1.txt s1 null string${RESET}\n"
@@ -27,20 +27,24 @@ printf "${GREEN}test1.txt s2 null string${RESET}\n"
 
 printf "${GREEN}test1.txt simple test${RESET}\n"
 ./replace files/test1.txt ryojiro akiyama
-diff -y --suppress-common-lines files/test1.txt files/test1.replace | GREP_COLOR='0;35' egrep --color=auto -e '$|ryojiro' -e 'akiyama|$'
+diff -y --suppress-common-lines files/test1.txt files/test1.txt.replace | GREP_COLOR='0;35' egrep --color=auto -e '$|ryojiro' -e 'akiyama|$'
 # `display difference side by side` | `color the string matches "ryojiro" or "akiyama"`
+
+printf "${GREEN}test1.txt s1 == s2${RESET}\n"
+./replace files/test1.txt ryojiro ryojiro
+diff -y --suppress-common-lines files/test1.txt files/test1.txt.replace
 
 printf "${GREEN}test1.txt s1 dose not exist${RESET}\n"
 ./replace files/test1.txt bbbbbb akiyama
-diff -y --suppress-common-lines files/test1.txt files/test1.replace
+diff -y --suppress-common-lines files/test1.txt files/test1.txt.replace
 
 printf "${GREEN}test2.txt(no last newline) simple test${RESET}\n"
 ./replace files/test2.txt ryojiro akiyama
-diff -y --suppress-common-lines files/test2.txt files/test2.replace | GREP_COLOR='0;35' egrep --color=auto -e 'ryojiro|$' -e 'akiyama|$'
+diff -y --suppress-common-lines files/test2.txt files/test2.txt.replace | GREP_COLOR='0;35' egrep --color=auto -e 'ryojiro|$' -e 'akiyama|$'
 
 printf "${GREEN}test2.txt(no last newline) s1 dose not exit${RESET}\n"
 ./replace files/test2.txt akiyama akiyama
-diff -y --suppress-common-lines files/test2.txt files/test2.replace
+diff -y --suppress-common-lines files/test2.txt files/test2.txt.replace
 
 printf "${GREEN}test3(empty file) simple test${RESET}\n"
 ./replace files/test3 ryojiro akiyama
