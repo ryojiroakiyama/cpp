@@ -1,7 +1,7 @@
 #include "Zombie.hpp"
 #include "escape_sequence.hpp"
 
-Zombie::Zombie()
+Zombie::Zombie() : _name("")
 {
 }
 
