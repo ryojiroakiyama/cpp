@@ -1,6 +1,10 @@
 #include "Zombie.hpp"
 #include "escape_sequence.hpp"
 
+Zombie::Zombie()
+{
+}
+
 Zombie::Zombie(std::string name) : _name(name)
 {
 }
@@ -21,4 +25,9 @@ void	Zombie::announce()
 				<< " BraiiiiiiinnnzzzZ..."
 				<< RESET
 				<< std::endl;
+}
+
+void	Zombie::setName(std::string name)
+{
+	_name = name;
 }
