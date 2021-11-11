@@ -23,14 +23,6 @@ int		get_level(std::string level)
 							return -1;
 }
 
-void	put_level(std::string level)
-{
-	std::cout	<< MAGENTA
-				<< "[ " <<  level << " ]"
-				<< RESET
-				<< std::endl;
-}
-
 int		main(int argc, char *argv[])
 {
 	if (argc != 2)
@@ -39,20 +31,25 @@ int		main(int argc, char *argv[])
 	switch (get_level(argv[1]))
 	{
 		case E_DEBUG:
-			put_level(DEBUG);
+			std::cout << "[ " << DEBUG << " ]" << std::endl;
 			karen.complain(DEBUG);
+			std::cout << std::endl;
 		case E_INFO:
-			put_level(INFO);
+			std::cout << "[ " << INFO << " ]" << std::endl;
 			karen.complain(INFO);
+			std::cout << std::endl;
 		case E_WARNING:
-			put_level(WARNING);
+			std::cout << "[ " << WARNING << " ]" << std::endl;
 			karen.complain(WARNING);
+			std::cout << std::endl;
 		case E_ERROR:
-			put_level(ERROR);
+			std::cout << "[ " << ERROR << " ]" << std::endl;
 			karen.complain(ERROR);
+			std::cout << std::endl;
 			break;
 		default:
-			put_level("Probably complaining about insignificant problems");
+			std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
+			std::cout << std::endl;
 			break;
 	}
 	return (0);
