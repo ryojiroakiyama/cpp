@@ -4,14 +4,15 @@
 class Fixed
 {
 	public:
-		int			value;
-		static int	mantissa;
-	private:
 		Fixed();
 		~Fixed();
-		Fixed( Fixed& a );
+		Fixed( const Fixed& src );
+		Fixed&		operator=( const Fixed& src );
 		int			getRawBits( void ) const;
 		void		setRawBits( int const raw );
+	private:
+		int			_value;
+		static int	_fraction;
 
 };
 
