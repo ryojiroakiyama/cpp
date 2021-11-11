@@ -34,6 +34,10 @@ printf "${GREEN}test1.txt s1 == s2${RESET}\n"
 ./replace files/test1.txt ryojiro ryojiro
 diff -y --suppress-common-lines files/test1.txt files/test1.txt.replace
 
+printf "${GREEN}test1.txt s1 == s2${RESET}\n"
+./replace files/test1.txt a a
+diff -y --suppress-common-lines files/test1.txt files/test1.txt.replace
+
 printf "${GREEN}test1.txt s1 dose not exist${RESET}\n"
 ./replace files/test1.txt bbbbbb akiyama
 diff -y --suppress-common-lines files/test1.txt files/test1.txt.replace
