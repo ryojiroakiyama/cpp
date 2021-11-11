@@ -12,9 +12,9 @@ Karen::Karen()
 
 void	Karen::complain(std::string level)
 {
-	int	idx =	(level == "DEBUG") |
-				(level == "INFO") * 2 |
-				(level == "WARNING") * 3 |
+	int	idx =	(level == "DEBUG") +
+				(level == "INFO") * 2 +
+				(level == "WARNING") * 3 +
 				(level == "ERROR") * 4;
 	(this->*functions[idx])();
 }
