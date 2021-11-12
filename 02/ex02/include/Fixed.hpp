@@ -31,6 +31,6 @@ class Fixed
 		static const int	_FixBit;
 };
 
-std::ostream&				operator<<(  std::ostream& os, const Fixed& src );
+std::ostream&	operator<<( std::ostream& os, const Fixed& src );
 
 #endif
