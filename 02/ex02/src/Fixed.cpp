@@ -6,8 +6,8 @@ const int	Fixed::_FixBit = 8;
 
 // constructor, destructor
 Fixed::Fixed() : _InternalValue(0) {}
-Fixed::Fixed( const int value ) { _InternalValue = value << _FixBit; }
-Fixed::Fixed( const float value ) { _InternalValue = roundf(value * std::pow(2, 8)); }
+Fixed::Fixed( const int value ) : _InternalValue(value << _FixBit) {}
+Fixed::Fixed( const float value ) : _InternalValue(roundf(value * std::pow(2, 8))) {}
 Fixed::~Fixed() {}
 Fixed::Fixed( const Fixed& original ) { *this = original; }
 
@@ -31,6 +31,11 @@ Fixed	Fixed::operator* ( const Fixed& right ) const { return Fixed(_InternalValu
 Fixed	Fixed::operator/ ( const Fixed& right ) const { return Fixed(_InternalValue / right.getRawBits()); }
 Fixed&	Fixed::operator++() { _InternalValue++; return *this; }
 Fixed	Fixed::operator++(int) { Fixed original = *this; ++(*this); return original; }
+
+//Fixed	Fixed::operator* ( const Fixed& right ) const
+//{
+//	return Fixed(static_cast<int>(static_cast<long>(_InternalValue) * static_cast<long>(right.getRawBits())));
+//}
 
 // min, max
 Fixed&			Fixed::min( Fixed& a, Fixed& b )
