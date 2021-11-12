@@ -4,7 +4,7 @@ CXXFLAGS	=	-Wall -Werror -Wextra -std=c++98 -pedantic -MMD -MP -I $(INCDIR)
 INCDIR		=	./include
 SRCDIR		=	./src
 SRCNAME		=	main.cpp \
-				Fixed.cpp
+				ClapTrap.cpp
 SRCS		=	$(addprefix $(SRCDIR)/, $(SRCNAME))
 OBJS		=	$(SRCS:.cpp=.o)
 DEPS		=	$(OBJS:.o=.d)
