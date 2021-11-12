@@ -35,7 +35,7 @@ Fixed::Fixed( const Fixed& original )
 Fixed&	Fixed::operator=( const Fixed& right )
 {
 	std::cout << "Assignation operator called" << std::endl;
-	_InternalValue = right.getRawBits();
+	_InternalValue = right._InternalValue;
 	return *this;
 }
 
@@ -47,11 +47,13 @@ std::ostream&	operator<<( std::ostream& os, const Fixed& right )
 
 int		Fixed::getRawBits( void ) const
 {
+	std::cout << "getRawBits member function called" << std::endl;
 	return _InternalValue;
 }
 
 void	Fixed::setRawBits( int const raw )
 {
+	std::cout << "setRawBits member function called" << std::endl;
 	_InternalValue = raw;
 }
 
