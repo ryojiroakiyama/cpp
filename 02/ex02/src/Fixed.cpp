@@ -25,17 +25,12 @@ bool	Fixed::operator>=( const Fixed& right ) const { return _InternalValue >= ri
 bool	Fixed::operator<=( const Fixed& right ) const { return _InternalValue <= right.getRawBits(); }
 bool	Fixed::operator==( const Fixed& right ) const { return _InternalValue == right.getRawBits(); }
 bool	Fixed::operator!=( const Fixed& right ) const { return _InternalValue != right.getRawBits(); }
-Fixed	Fixed::operator+ ( const Fixed& right ) const { return Fixed(_InternalValue + right.getRawBits()); }
-Fixed	Fixed::operator- ( const Fixed& right ) const { return Fixed(_InternalValue - right.getRawBits()); }
-Fixed	Fixed::operator* ( const Fixed& right ) const { return Fixed(_InternalValue * right.getRawBits()); }
-Fixed	Fixed::operator/ ( const Fixed& right ) const { return Fixed(_InternalValue / right.getRawBits()); }
+Fixed	Fixed::operator+ ( const Fixed& right ) const { return Fixed(this->toFloat() + right.toFloat()); }
+Fixed	Fixed::operator- ( const Fixed& right ) const { return Fixed(this->toFloat() - right.toFloat()); }
+Fixed	Fixed::operator* ( const Fixed& right ) const { return Fixed(this->toFloat() * right.toFloat()); }
+Fixed	Fixed::operator/ ( const Fixed& right ) const { return Fixed(this->toFloat() / right.toFloat()); }
 Fixed&	Fixed::operator++() { _InternalValue++; return *this; }
 Fixed	Fixed::operator++(int) { Fixed original = *this; ++(*this); return original; }
-
-//Fixed	Fixed::operator* ( const Fixed& right ) const
-//{
-//	return Fixed(static_cast<int>(static_cast<long>(_InternalValue) * static_cast<long>(right.getRawBits())));
-//}
 
 // min, max
 Fixed&			Fixed::min( Fixed& a, Fixed& b )
