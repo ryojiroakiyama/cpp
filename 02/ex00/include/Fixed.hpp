@@ -7,12 +7,12 @@ class Fixed
 		Fixed();
 		~Fixed();
 		Fixed( const Fixed& src );
-		Fixed&		operator=( const Fixed& src );
-		int			getRawBits( void ) const;
-		void		setRawBits( int const raw );
+		Fixed&				operator=( const Fixed& src );
+		int					getRawBits( void ) const;
+		void				setRawBits( int const raw );
 	private:
-		int			_value;
-		static int	_fraction;
+		int					_value;
+		static const int	_fraction;
 
 };
 
