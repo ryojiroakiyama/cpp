@@ -11,7 +11,7 @@ class Fixed
 		int					getRawBits( void ) const;
 		void				setRawBits( int const raw );
 	private:
-		int					_InternalValue;
+		int					_RawBits;
 		static const int	_FixBit;
 };
 

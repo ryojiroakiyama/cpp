@@ -33,7 +33,7 @@ class Fixed
 		static Fixed&		max(Fixed& a, Fixed& b);
 		static const Fixed&	max(const Fixed& a, const Fixed& b);
 	private:
-		int					_InternalValue;
+		int					_RawBits;
 		static const int	_FixBit;
 };
 

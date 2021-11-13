@@ -17,7 +17,7 @@ class Fixed
 		int					toInt( void ) const;
 		Fixed&				operator=( const Fixed& src );
 	private:
-		int					_InternalValue;
+		int					_RawBits;
 		static const int	_FixBit;
 };
 
