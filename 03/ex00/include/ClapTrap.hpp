@@ -4,7 +4,7 @@ class	CrapTrap
 		CrapTrap();
 		CrapTrap( const CrapTrap& original );
 		~CrapTrap();
-		Fixed&		operator= ( const Fixed& right );
+		ClapTrap&	operator= ( const ClapTrap& right );
 		void		attack( std::string const & target );
 		void		takeDamage( unsigned int amount );
 		void		beRepaired( unsigned int amount );
@@ -12,10 +12,10 @@ class	CrapTrap
 		int			getHitPoints( void );
 		int			getEnergyPoints( void );
 		int			getAttackDamage( void );
-		void		getName( std::string name );
-		void		getHitPoints( int );
-		void		getEnergyPoints( int );
-		void		getAttackDamage( int );
+		void		setName( std::string name );
+		void		setHitPoints( int );
+		void		setEnergyPoints( int );
+		void		setAttackDamage( int );
 	private:
 		std::string	_Name;
 		int			_HitPoints;
