@@ -13,7 +13,6 @@ class Fixed
 	private:
 		int					_InternalValue;
 		static const int	_FixBit;
-
 };
 
 #endif

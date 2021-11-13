@@ -4,6 +4,7 @@
 
 const int	Fixed::_FixBit = 8;
 
+// constructor, destructor
 Fixed::Fixed() : _InternalValue(0)
 {
 	std::cout << "Default constructor called" << std::endl;
@@ -12,13 +13,13 @@ Fixed::Fixed() : _InternalValue(0)
 Fixed::Fixed( const int value )
 {
 	std::cout << "Int constructor called" << std::endl;
-	_InternalValue = value << _FixBit;
+	_InternalValue = value * (1 << _FixBit);
 }
 
 Fixed::Fixed( const float value )
 {
 	std::cout << "Float constructor called" << std::endl;
-	_InternalValue = roundf(value * std::pow(2, 8));
+	_InternalValue = roundf(value * (1 << _FixBit));
 }
 
 Fixed::~Fixed()
@@ -39,12 +40,7 @@ Fixed&	Fixed::operator=( const Fixed& right )
 	return *this;
 }
 
-std::ostream&	operator<<( std::ostream& os, const Fixed& right )
-{
-	os << right.toFloat();
-	return (os);
-}
-
+// basic method
 int		Fixed::getRawBits( void ) const
 {
 	return _InternalValue;
@@ -62,5 +58,12 @@ float	Fixed::toFloat( void ) const
 
 int		Fixed::toInt( void ) const
 {
-	return _InternalValue >> _FixBit;
+	return _InternalValue / (1 << _FixBit);
+}
+
+// external function
+std::ostream&	operator<<( std::ostream& os, const Fixed& right )
+{
+	os << right.toFloat();
+	return (os);
 }
