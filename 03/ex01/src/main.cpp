@@ -13,11 +13,13 @@ int main(void)
 				<< clapscav->getEnergyPoints() << std::endl
 				<< clapscav->getAttackDamage() << std::endl;
 	clapscav->attack("Ben");
-	std::cout	<< RESET;
+	std::cout	<< CYAN;
 	delete clapscav;
 	std::cout	<< GREEN;
-	ScavTrap scav;
+	ScavTrap *scav = new ScavTrap();
 	std::cout	<< MAGENTA;
-	scav.guardGate();
+	scav->guardGate();
+	std::cout	<< CYAN;
+	delete scav;
 	std::cout	<< RESET;
 }
