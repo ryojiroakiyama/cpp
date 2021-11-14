@@ -7,12 +7,18 @@ int main(void)
 	std::cout	<< GREEN;
 	ClapTrap *clapscav = new ScavTrap("clapscav");
 	std::cout	<< MAGENTA
-				<< "[status]" << std::endl
-				<< clapscav->getName() << std::endl
-				<< clapscav->getHitPoints() << std::endl
-				<< clapscav->getEnergyPoints() << std::endl
-				<< clapscav->getAttackDamage() << std::endl;
+				<< "[attributes] "
+				<< clapscav->getName()
+				<< ", "
+				<< clapscav->getHitPoints()
+				<< ", "
+				<< clapscav->getEnergyPoints()
+				<< ", "
+				<< clapscav->getAttackDamage()
+				<< std::endl;
+	std::cout	<< "[atack] ";
 	clapscav->attack("Ben");
+
 	std::cout	<< CYAN;
 	delete clapscav;
 	std::cout	<< GREEN;
