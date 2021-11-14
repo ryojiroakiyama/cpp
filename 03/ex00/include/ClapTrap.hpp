@@ -1,24 +1,27 @@
-class	CrapTrap
+#include <iostream>
+
+class	ClapTrap
 {
 	public:
-		CrapTrap();
-		CrapTrap( const CrapTrap& original );
-		~CrapTrap();
-		ClapTrap&	operator= ( const ClapTrap& right );
-		void		attack( std::string const & target );
-		void		takeDamage( unsigned int amount );
-		void		beRepaired( unsigned int amount );
-		std::string	getName( void );
-		int			getHitPoints( void );
-		int			getEnergyPoints( void );
-		int			getAttackDamage( void );
-		void		setName( std::string name );
-		void		setHitPoints( int );
-		void		setEnergyPoints( int );
-		void		setAttackDamage( int );
+		ClapTrap();
+		ClapTrap(std::string name);
+		ClapTrap( const ClapTrap& original );
+		~ClapTrap();
+		ClapTrap&		operator= ( const ClapTrap& right );
+		void			attack( std::string const & target );
+		void			takeDamage( unsigned int amount );
+		void			beRepaired( unsigned int amount );
+		std::string		getName( void ) const;
+		unsigned int	getHitPoints( void ) const;
+		unsigned int	getEnergyPoints( void ) const;
+		unsigned int	getAttackDamage( void ) const;
+		void			setName( std::string name );
+		void			setHitPoints( unsigned int num );
+		void			setEnergyPoints( unsigned int num );
+		void			setAttackDamage( unsigned int num );
 	private:
-		std::string	_Name;
-		int			_HitPoints;
-		int			_EnergyPoints;
-		int			_AttackDamage;
+		std::string		_Name;
+		unsigned int	_HitPoints;
+		unsigned int	_EnergyPoints;
+		unsigned int	_AttackDamage;
 };

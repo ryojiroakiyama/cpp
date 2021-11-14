@@ -1,13 +1,15 @@
-#include "ClapTrap.cpp"
+#include "ClapTrap.hpp"
+#include <limits.h>
 
-CrapTrap::CrapTrap() : _Name("player1"), _HitPoints(10), _EnergyPoints(10), _AttackDamage(0)
+// construcor, destructor
+ClapTrap::ClapTrap() : _Name("player1"), _HitPoints(10), _EnergyPoints(10), _AttackDamage(0)
 { std::cout << "default constructor" << std::endl; }
 
-CrapTrap::CrapTrap(std::string name) : _Name(name), _HitPoints(10), _EnergyPoints(10), _AttackDamage(0)
+ClapTrap::ClapTrap(std::string name) : _Name(name), _HitPoints(10), _EnergyPoints(10), _AttackDamage(0)
 { std::cout << "second constructor" << std::endl; }
 
-CrapTrap::~CrapTrap() { std::cout << "destructor" << std::endl; }
-CrapTrap::CrapTrap( const CrapTrap& original ) { *this = original; }
+ClapTrap::~ClapTrap() { std::cout << "destructor" << std::endl; }
+ClapTrap::ClapTrap( const ClapTrap& original ) { *this = original; }
 
 ClapTrap&	ClapTrap::operator= ( const ClapTrap& right )
 {
@@ -18,6 +20,17 @@ ClapTrap&	ClapTrap::operator= ( const ClapTrap& right )
 	return *this;
 }
 
+// getter, setter
+std::string		ClapTrap::getName( void ) const { return _Name; }
+unsigned int	ClapTrap::getHitPoints( void ) const { return _HitPoints; }
+unsigned int	ClapTrap::getEnergyPoints( void ) const { return _EnergyPoints; }
+unsigned int	ClapTrap::getAttackDamage( void ) const { return _AttackDamage; }
+void			ClapTrap::setName( std::string name ) { _Name = name; }
+void			ClapTrap::setHitPoints( unsigned int num ) { _HitPoints = num; }
+void			ClapTrap::setEnergyPoints( unsigned int num ) { _EnergyPoints = num; }
+void			ClapTrap::setAttackDamage( unsigned int num ) { _AttackDamage = num; }
+
+// base function
 void		ClapTrap::attack( std::string const & target )
 {
 	std::cout	<< "ClapTrap"
@@ -25,13 +38,35 @@ void		ClapTrap::attack( std::string const & target )
 				<< " attacks"
 				<< " <" << target << ">"
 				<< ", causing"
-				<< " <" << _HitPoints << ">"
+				<< " <" << _AttackDamage << ">"
 				<< " points of damage!"
 				<< std::endl;
 }
 
-void		takeDamage( unsigned int amount )
-{}
+void		ClapTrap::takeDamage( unsigned int amount )
+{
+	std::cout	<< "ClapTrap"
+				<< " <" << _Name << ">"
+				<< " takes"
+				<< " <" << amount << ">"
+				<< " damage."
+				<< std::endl;
+	if (_HitPoints < amount)
+		_HitPoints = 0;
+	else
+		_HitPoints -= amount;
+}
 
-void		veRepaired( unsigned int amount )
-{}
+void		ClapTrap::beRepaired( unsigned int amount )
+{
+	std::cout	<< "ClapTrap"
+				<< " <" << _Name << ">"
+				<< " is repaired"
+				<< " <" << amount << ">"
+				<< " HP."
+				<< std::endl;
+	if (UINT_MAX - _HitPoints < amount)
+		_HitPoints = UINT_MAX;
+	else
+		_HitPoints += amount;
+}
