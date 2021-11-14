@@ -2,15 +2,18 @@
 #include <limits.h>
 
 // construcor, destructor
-ClapTrap::ClapTrap() : _Name("player1"), _HitPoints(10), _EnergyPoints(10), _AttackDamage(0)
+ClapTrap::ClapTrap()
+: _Name("player1"), _HitPoints(10), _EnergyPoints(10), _AttackDamage(0)
 { std::cout << "default constructor" << std::endl; }
 
-ClapTrap::ClapTrap(std::string name) : _Name(name), _HitPoints(10), _EnergyPoints(10), _AttackDamage(0)
-{ std::cout << "second constructor" << std::endl; }
+ClapTrap::ClapTrap(std::string name)
+: _Name(name), _HitPoints(10), _EnergyPoints(10), _AttackDamage(0)
+{ std::cout << "constructor" << std::endl; }
 
 ClapTrap::~ClapTrap() { std::cout << "destructor" << std::endl; }
 ClapTrap::ClapTrap( const ClapTrap& original ) { *this = original; }
 
+// oprator overload
 ClapTrap&	ClapTrap::operator= ( const ClapTrap& right )
 {
 	_Name 			= right.getName();
