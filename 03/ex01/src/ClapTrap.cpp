@@ -3,8 +3,8 @@
 
 // construcor, destructor
 ClapTrap::ClapTrap()
-: _Name("player1"), _HitPoints(10), _EnergyPoints(10), _AttackDamage(0)
-{ std::cout << "ClapTrap default constructor" << std::endl; }
+: _Name("ClapTrap player1"), _HitPoints(10), _EnergyPoints(10), _AttackDamage(0)
+{ std::cout << "default constructor" << std::endl; }
 
 ClapTrap::ClapTrap(std::string name)
 : _Name(name), _HitPoints(10), _EnergyPoints(10), _AttackDamage(0)

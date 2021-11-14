@@ -1,4 +1,4 @@
-NAME		=	ClapTrap
+NAME		=	ScavTrap
 CXX			=	clang++
 CXXFLAGS	=	-Wall -Werror -Wextra -std=c++98 -pedantic -MMD -MP -I $(INCDIR)
 INCDIR		=	./include
