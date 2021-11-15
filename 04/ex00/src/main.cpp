@@ -34,6 +34,7 @@ int main()
 		std::cout	<< CYAN;
 		delete meta;
 		delete j;
+		std::cout	<< RESET;
 	}
 	return 0;
 }
