@@ -1,7 +1,7 @@
 #include "Animal.hpp"
 
 // construcor, destructor
-Animal::Animal() : type("animal")
+Animal::Animal() : type("Animal")
 {
 	std::cout	<< "Animal default constructor"
 				<< " [" << type << "]"
