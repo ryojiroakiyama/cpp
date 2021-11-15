@@ -1,19 +1,19 @@
-#include "DiamondTrap.hpp"
+#include "Dog.hpp"
+#include "Cat.hpp"
 #include "escape_sequence.hpp"
 
-int main(void)
+int main()
 {
-	std::cout	<< GREEN;
-	DiamondTrap diamond("diamond");
-	std::cout	<< MAGENTA;
-	diamond.whoAmI();
-	std::cout	<< "[other attributes] "
-				<< diamond.getHitPoints()
-				<< ", "
-				<< diamond.getEnergyPoints()
-				<< ", "
-				<< diamond.getAttackDamage()
-				<< std::endl;
-	diamond.attack("Ben");
-	std::cout	<< RESET;
+	const Animal* meta = new Animal();
+	const Animal* j = new Dog();
+	const Animal* i = new Cat();
+	std::cout << j->getType() << " " << std::endl;
+	std::cout << i->getType() << " " << std::endl;
+	i->makeSound();
+	j->makeSound();
+	meta->makeSound();
+	delete meta;
+	delete j;
+	delete i;
+	return 0;
 }

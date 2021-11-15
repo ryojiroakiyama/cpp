@@ -1,13 +1,12 @@
-NAME		=	DiamondTrap
+NAME		=	Animals
 CXX			=	clang++
 CXXFLAGS	=	-Wall -Werror -Wextra -std=c++98 -pedantic -MMD -MP -Wshadow -Wno-shadow -I $(INCDIR)
 INCDIR		=	./include
 SRCDIR		=	./src
 SRCNAME		=	main.cpp \
-				ClapTrap.cpp \
-				ScavTrap.cpp \
-				FragTrap.cpp \
-				DiamondTrap.cpp
+				Animal.cpp \
+				Dog.cpp \
+				Cat.cpp
 SRCS		=	$(addprefix $(SRCDIR)/, $(SRCNAME))
 OBJS		=	$(SRCS:.cpp=.o)
 DEPS		=	$(OBJS:.o=.d)
