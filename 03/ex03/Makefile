@@ -1,6 +1,6 @@
 NAME		=	DiamondTrap
 CXX			=	clang++
-CXXFLAGS	=	-Wall -Werror -Wextra -std=c++98 -pedantic -MMD -MP -I $(INCDIR)
+CXXFLAGS	=	-Wall -Werror -Wextra -std=c++98 -pedantic -MMD -MP -Wshadow -Wno-shadow -I $(INCDIR)
 INCDIR		=	./include
 SRCDIR		=	./src
 SRCNAME		=	main.cpp \
