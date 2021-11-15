@@ -13,6 +13,11 @@ class	ScavTrap : public virtual ClapTrap
 		ScavTrap&		operator= ( const ScavTrap& right );
 		virtual void	attack( std::string const & target );
 		void			guardGate();
+	protected:
+		static std::string	Scav_Name;
+		static int			Scav_HP;
+		static int			Scav_EP;
+		static int			Scav_AD;
 };
 
 #endif

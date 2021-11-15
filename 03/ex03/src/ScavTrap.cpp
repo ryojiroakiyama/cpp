@@ -1,22 +1,27 @@
 #include "ScavTrap.hpp"
 
+std::string	ScavTrap::Scav_Name = "ScavTrap player1";
+int			ScavTrap::Scav_HP = 100;
+int			ScavTrap::Scav_EP = 50;
+int			ScavTrap::Scav_AD = 20;
+
 // construcor, destructor
 ScavTrap::ScavTrap()
 {
 	std::cout << "ScavTrap default constructor" << std::endl;
-	setName("ScavTrap player1");
-	setHitPoints(100);
-	setEnergyPoints(50);
-	setAttackDamage(20);
+	setName(Scav_Name);
+	setHitPoints(Scav_HP);
+	setEnergyPoints(Scav_EP);
+	setAttackDamage(Scav_AD);
 }
 
 ScavTrap::ScavTrap(std::string name)
 {
 	std::cout << "ScavTrap constructor" << std::endl;
 	setName(name);
-	setHitPoints(100);
-	setEnergyPoints(50);
-	setAttackDamage(20);
+	setHitPoints(Scav_HP);
+	setEnergyPoints(Scav_EP);
+	setAttackDamage(Scav_AD);
 }
 
 ScavTrap::~ScavTrap() { std::cout << "ScavTrap destructor" << std::endl; }

@@ -1,13 +1,18 @@
 #include "ClapTrap.hpp"
 #include <limits.h>
 
+std::string	ClapTrap::Clap_Name = "ClapTrap player1";
+int			ClapTrap::Clap_HP = 10;
+int			ClapTrap::Clap_EP = 10;
+int			ClapTrap::Clap_AD = 0;
+
 // construcor, destructor
 ClapTrap::ClapTrap()
-: _Name("ClapTrap player1"), _HitPoints(10), _EnergyPoints(10), _AttackDamage(0)
+: _Name(Clap_Name), _HitPoints(Clap_HP), _EnergyPoints(Clap_EP), _AttackDamage(Clap_AD)
 { std::cout << "ClapTrap default constructor" << std::endl; }
 
 ClapTrap::ClapTrap(std::string name)
-: _Name(name), _HitPoints(10), _EnergyPoints(10), _AttackDamage(0)
+: _Name(name), _HitPoints(Clap_HP), _EnergyPoints(Clap_EP), _AttackDamage(Clap_AD)
 { std::cout << "ClapTrap constructor" << std::endl; }
 
 ClapTrap::~ClapTrap() { std::cout << "ClapTrap destructor" << std::endl; }
