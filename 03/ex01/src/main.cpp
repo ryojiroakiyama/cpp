@@ -5,27 +5,19 @@
 int main(void)
 {
 	std::cout	<< GREEN;
-	ClapTrap *clapscav = new ScavTrap("clapscav");
+	ScavTrap	scav("scav");
 	std::cout	<< MAGENTA
 				<< "[attributes] "
-				<< clapscav->getName()
+				<< scav.getName()
 				<< ", "
-				<< clapscav->getHitPoints()
+				<< scav.getHitPoints()
 				<< ", "
-				<< clapscav->getEnergyPoints()
+				<< scav.getEnergyPoints()
 				<< ", "
-				<< clapscav->getAttackDamage()
+				<< scav.getAttackDamage()
 				<< std::endl;
-	std::cout	<< "[atack] ";
-	clapscav->attack("Ben");
-
 	std::cout	<< CYAN;
-	delete clapscav;
-	std::cout	<< GREEN;
-	ScavTrap *scav = new ScavTrap();
-	std::cout	<< MAGENTA;
-	scav->guardGate();
-	std::cout	<< CYAN;
-	delete scav;
+	scav.attack("Ben");
+	scav.guardGate();
 	std::cout	<< RESET;
 }

@@ -5,25 +5,18 @@
 int main(void)
 {
 	std::cout	<< GREEN;
-	ClapTrap *clapfrag = new FragTrap("clapfrag");
+	FragTrap	frag("frag");
 	std::cout	<< MAGENTA
 				<< "[attributes] "
-				<< clapfrag->getName()
+				<< frag.getName()
 				<< ", "
-				<< clapfrag->getHitPoints()
+				<< frag.getHitPoints()
 				<< ", "
-				<< clapfrag->getEnergyPoints()
+				<< frag.getEnergyPoints()
 				<< ", "
-				<< clapfrag->getAttackDamage()
+				<< frag.getAttackDamage()
 				<< std::endl;
-
 	std::cout	<< CYAN;
-	delete clapfrag;
-	std::cout	<< GREEN;
-	FragTrap *Frag = new FragTrap();
-	std::cout	<< MAGENTA;
-	Frag->highFivesGuys();
-	std::cout	<< CYAN;
-	delete Frag;
+	frag.highFivesGuys();
 	std::cout	<< RESET;
 }
