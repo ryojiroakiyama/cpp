@@ -14,17 +14,17 @@ AMateria::AMateria( std::string const & type ) : _Type(type)
 				<< std::endl;
 }
 
-AMateria::~AMateria()
-{
-	std::cout	<< "AM default destructor"
-				<< std::endl;
-}
-
 AMateria::AMateria( const AMateria& original )
 {
 	std::cout	<< "AM copy constructor"
 				<< std::endl;
 	*this = original;
+}
+
+AMateria::~AMateria()
+{
+	std::cout	<< "AM default destructor"
+				<< std::endl;
 }
 
 // oprator overload
@@ -44,4 +44,5 @@ void 				AMateria::use(ICharacter& target)
 {
 	std::cout	<< "something"
 				<< std::endl;
+	(void)target;
 }

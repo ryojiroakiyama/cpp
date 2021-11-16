@@ -10,6 +10,7 @@ class AMateria
 	public:
 		AMateria();
 		AMateria( std::string const & type );
+		AMateria( const AMateria& original );
 		virtual ~AMateria();
 		AMateria&			operator=( const AMateria& right );
 		std::string const &	getType() const;

@@ -1,5 +1,4 @@
 #include "ICharacter.hpp"
-#include "AMateria.hpp"
 #include "Ice.hpp"
 
 // construcor, destructor
@@ -17,17 +16,17 @@ Ice::Ice( std::string const & type )
 	_Type = type;
 }
 
-Ice::~Ice()
-{
-	std::cout	<< "Ice default destructor"
-				<< std::endl;
-}
-
 Ice::Ice( const Ice& original )
 {
 	std::cout	<< "Ice copy constructor"
 				<< std::endl;
 	*this = original;
+}
+
+Ice::~Ice()
+{
+	std::cout	<< "Ice default destructor"
+				<< std::endl;
 }
 
 // oprator overload
@@ -49,4 +48,5 @@ void 			Ice::use(ICharacter& target)
 	/*			<< */
 				<< " *"
 				<< std::endl;
+	(void)target;
 }
