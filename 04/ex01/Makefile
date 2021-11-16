@@ -1,14 +1,13 @@
-NAME		=	Animals
+NAME		=	Brain
 CXX			=	clang++
-CXXFLAGS	=	-Wall -Werror -Wextra -std=c++98 -pedantic -MMD -MP -Wshadow -I $(INCDIR)
+CXXFLAGS	=	-Wall -Werror -Wextra -std=c++98 -pedantic -MMD -MP -I $(INCDIR)
 INCDIR		=	./include
 SRCDIR		=	./src
 SRCNAME		=	main.cpp \
 				Animal.cpp \
 				Dog.cpp \
 				Cat.cpp \
-				WrongAnimal.cpp \
-				WrongCat.cpp
+				Brain.cpp
 SRCS		=	$(addprefix $(SRCDIR)/, $(SRCNAME))
 OBJS		=	$(SRCS:.cpp=.o)
 DEPS		=	$(OBJS:.o=.d)

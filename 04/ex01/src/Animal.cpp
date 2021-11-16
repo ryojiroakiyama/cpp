@@ -4,7 +4,6 @@
 Animal::Animal() : type("Animal")
 {
 	std::cout	<< "Animal default constructor"
-				<< " [" << type << "]"
 				<< std::endl;
 }
 

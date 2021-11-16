@@ -15,13 +15,19 @@ Cat::~Cat()
 	delete _Brain;
 }
 
-Cat::Cat( const Cat& original ) { *this = original; }
+Cat::Cat( const Cat& original )
+{
+	std::cout	<< "Cat copy constructor"
+				<< std::endl;
+	_Brain = new Brain();
+	*this = original;
+}
 
 // oprator overload
 Cat&	Cat::operator= ( const Cat& right )
 {
 	setType(right.getType());
-	// string copy
+	*_Brain = *(right._Brain);
 	return *this;
 }
 
@@ -30,4 +36,14 @@ void	Cat::makeSound() const
 {
 	std::cout	<< "meow!"
 				<< std::endl;
+}
+
+void	Cat::setBrain( const std::string idea, const int idx )
+{
+	_Brain->setIdea(idea, idx);
+}
+
+void	Cat::displayBrain()
+{
+	_Brain->displayIdeas();
 }
