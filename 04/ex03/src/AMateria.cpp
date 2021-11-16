@@ -2,28 +2,28 @@
 #include "AMateria.hpp"
 
 // construcor, destructor
-AMateria::AMateria()
+AMateria::AMateria() : _Type("AMateria")
 {
-	std::cout	<< "AM default constructor"
+	std::cout	<< "AMateria default constructor"
 				<< std::endl;
 }
 
 AMateria::AMateria( std::string const & type ) : _Type(type)
 {
-	std::cout	<< "AM constructor"
+	std::cout	<< "AMateria constructor"
 				<< std::endl;
 }
 
 AMateria::AMateria( const AMateria& original )
 {
-	std::cout	<< "AM copy constructor"
+	std::cout	<< "AMateria copy constructor"
 				<< std::endl;
 	*this = original;
 }
 
 AMateria::~AMateria()
 {
-	std::cout	<< "AM default destructor"
+	std::cout	<< "AMateria default destructor"
 				<< std::endl;
 }
 
@@ -42,7 +42,6 @@ std::string const &	AMateria::getType() const
 
 void 				AMateria::use(ICharacter& target)
 {
-	std::cout	<< "something"
+	std::cout	<< target.getName()
 				<< std::endl;
-	(void)target;
 }

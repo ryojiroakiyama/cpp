@@ -1,10 +1,9 @@
 #ifndef MATERIASOURCE_HPP
 #define MATERIASOURCE_HPP
 
-#include <iostream>
+#include "IMateriaSource.hpp"
 
-class AMateria;
-class IMateriaSource;
+#define SMNUM 4
 
 class MateriaSource : public IMateriaSource
 {
@@ -13,8 +12,10 @@ class MateriaSource : public IMateriaSource
 		MateriaSource( const MateriaSource& orginal );
 		virtual ~MateriaSource();
 		MateriaSource&		operator= ( const MateriaSource& right );
-		virtual void		learnMateria(AMateria*);
-		virtual AMateria*	createMateria(std::string const & type);
+		virtual void		learnMateria( AMateria* );
+		virtual AMateria*	createMateria( std::string const & type );
+	private:
+		AMateria*			_SrcMateria[SMNUM];
 };
 
 #endif

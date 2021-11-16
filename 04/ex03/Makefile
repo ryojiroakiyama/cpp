@@ -5,7 +5,10 @@ INCDIR		=	./include
 SRCDIR		=	./src
 SRCNAME		=	main.cpp \
 				AMateria.cpp \
-				Ice.cpp
+				Ice.cpp \
+				Cure.cpp \
+				MateriaSource.cpp \
+				Character.cpp
 SRCS		=	$(addprefix $(SRCDIR)/, $(SRCNAME))
 OBJS		=	$(SRCS:.cpp=.o)
 DEPS		=	$(OBJS:.o=.d)

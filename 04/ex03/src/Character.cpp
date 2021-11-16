@@ -29,13 +29,21 @@ Character::~Character()
 {
 	std::cout	<< "Character default destructor"
 				<< std::endl;
+	for (int i = 0; i < MNUM; i++)
+	{
+		if (_Materia[i])
+			delete _Materia[i];
+	}
 }
 
 // oprator overload
 Character&			Character::operator= ( const Character& right )
 {
 	for (int i = 0; i < MNUM; i++)
-		_Materia[i] = right._Materia[i]->clone();
+	{
+		if (right._Materia[i])
+			_Materia[i] = right._Materia[i]->clone();
+	}
 	return *this;
 }
 
@@ -47,14 +55,19 @@ std::string const&	Character::getName() const
 
 void				Character::equip(AMateria* NewMateria)
 {
+	int	insert_idx = -1;
 	for (int i = 0; NewMateria && i < MNUM; i++)
 	{
-		if (!_Materia[i])
+		if (!_Materia[i] && insert_idx == -1)
+			insert_idx = i;
+		if (_Materia[i] == NewMateria)
 		{
-			_Materia[i] = NewMateria;
+			insert_idx = -1;
 			break ;
 		}
 	}
+	if (0 <= insert_idx)
+		_Materia[insert_idx] = NewMateria;
 }
 
 void				Character::unequip(int idx)
