@@ -1,6 +1,7 @@
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
 #include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
 #include "escape_sequence.hpp"
 
 void	bstatus(Bureaucrat &b)
@@ -36,61 +37,27 @@ int main( void )
 	{
 		Bureaucrat b("Ben", 100);
 		ShrubberyCreationForm s("home");
-		bstatus(b);
-		fstatus(s);
 		b.signForm(s);
 		b.executeForm(s);
+		bstatus(b);
+		fstatus(s);
 	}
 	catch(const std::exception& e)
 	{
 		std::cerr << e.what() << std::endl;
 	}
-	//testname("higher sign grade");
-	//try
-	//{
-	//	Form f("form", 0, 100);
-	//}
-	//catch(const std::exception& e)
-	//{
-	//	std::cerr << e.what() << std::endl;
-	//}
-	//testname("lower execute grade");
-	//try
-	//{
-	//	Form f("form", 100, 151);
-	//}
-	//catch(const std::exception& e)
-	//{
-	//	std::cerr << e.what() << std::endl;
-	//}
-	//testname("sign");
-	//try
-	//{
-	//	Bureaucrat	b("Ben", 100);
-	//	Form		f("Form1", 100);
-	//	std::cout	<< YELLOW;
-	//	b.signForm(f);
-	//	std::cout	<< RESET;
-	//	bstatus(b);
-	//	fstatus(f);
-	//}
-	//catch(const std::exception& e)
-	//{
-	//	std::cerr << e.what() << std::endl;
-	//}
-	//testname("cannot sign");
-	//try
-	//{
-	//	Bureaucrat	b("Ben", 100);
-	//	Form		f("Form1", 99);
-	//	std::cout	<< YELLOW;
-	//	b.signForm(f);
-	//	std::cout	<< RESET;
-	//	bstatus(b);
-	//	fstatus(f);
-	//}
-	//catch(const std::exception& e)
-	//{
-	//	std::cerr << e.what() << std::endl;
-	//}
+	testname("RobotomyRequestForm");
+	try
+	{
+		Bureaucrat b("Ben", 35);
+		RobotomyRequestForm s("home");
+		b.signForm(s);
+		b.executeForm(s);
+		bstatus(b);
+		fstatus(s);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
 }

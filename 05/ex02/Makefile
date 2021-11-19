@@ -6,7 +6,8 @@ SRCDIR		=	./src
 SRCNAME		=	main.cpp \
 				Bureaucrat.cpp \
 				Form.cpp \
-				ShrubberyCreationForm.cpp
+				ShrubberyCreationForm.cpp \
+				RobotomyRequestForm.cpp
 SRCS		=	$(addprefix $(SRCDIR)/, $(SRCNAME))
 OBJS		=	$(SRCS:.cpp=.o)
 DEPS		=	$(OBJS:.o=.d)

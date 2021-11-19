@@ -84,12 +84,12 @@ void				Form::beExcuted( const Bureaucrat& b ) const
 // exeption class method
 const char*		Form::GradeTooHighException::what() const _NOEXCEPT
 {
-	return "sign Grade Too High";
+	return "Grade Too High";
 }
 
 const char*		Form::GradeTooLowException::what() const _NOEXCEPT
 {
-	return "sign Grade Too Low";
+	return "Grade Too Low";
 }
 
 
