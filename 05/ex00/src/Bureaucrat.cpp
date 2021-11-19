@@ -1,5 +1,8 @@
 #include "Bureaucrat.hpp"
 
+const int	Bureaucrat::_HighestGrade = 1;
+const int	Bureaucrat::_LowestGrade = 150;
+
 // constructor, destructor
 Bureaucrat::Bureaucrat() : _Name("B"), _Grade(150)
 {
@@ -11,6 +14,10 @@ Bureaucrat::Bureaucrat( std::string name, int grade ) : _Name(name), _Grade(grad
 {
 	std::cout	<< "Bureaucrat constructor"
 				<< std::endl;
+	if (grade < _HighestGrade)
+		throw GradeTooHighException();
+	else if (grade > _LowestGrade)
+		throw GradeTooLowException();
 }
 
 Bureaucrat::~Bureaucrat()
@@ -21,72 +28,52 @@ Bureaucrat::~Bureaucrat()
 
 Bureaucrat::Bureaucrat( const Bureaucrat& original )
 {
+	std::cout	<< "Bureaucrat copy constructor"
+				<< std::endl;
 	*this = original;
 }
 
 // overload operator
 Bureaucrat&	Bureaucrat::operator=( const Bureaucrat& right )
 {
-	_Name = right._Name;
 	_Grade = right._Grade;
 	return *this;
 }
 
-//bool	Bureaucrat::operator> ( const Bureaucrat& right ) const { return _RawBits > right.getRawBits(); }
-//bool	Bureaucrat::operator< ( const Bureaucrat& right ) const { return _RawBits < right.getRawBits(); }
-//bool	Bureaucrat::operator>=( const Bureaucrat& right ) const { return _RawBits >= right.getRawBits(); }
-//bool	Bureaucrat::operator<=( const Bureaucrat& right ) const { return _RawBits <= right.getRawBits(); }
-//bool	Bureaucrat::operator==( const Bureaucrat& right ) const { return _RawBits == right.getRawBits(); }
-//bool	Bureaucrat::operator!=( const Bureaucrat& right ) const { return _RawBits != right.getRawBits(); }
+std::string const&	Bureaucrat::getName() const
+{
+	return _Name;
+}
 
-//Bureaucrat	Bureaucrat::operator+ ( const Bureaucrat& right ) const
-//{
-//	Bureaucrat	result;
-//	result.setRawBits(_RawBits + right.getRawBits());
-//	return result;
-//}
+int					Bureaucrat::getGrade() const
+{
+	return _Grade;
+}
 
-//Bureaucrat	Bureaucrat::operator- ( const Bureaucrat& right ) const
-//{
-//	Bureaucrat	result;
-//	result.setRawBits(_RawBits - right.getRawBits());
-//	return result;
-//}
+void				Bureaucrat::Upgrade()
+{
+	_Grade--;
+	if (_Grade < _HighestGrade)
+		throw GradeTooHighException();
+}
 
-//Bureaucrat	Bureaucrat::operator* ( const Bureaucrat& right ) const
-//{
-//	Bureaucrat	result;
-//	long	left_num = this->getRawBits();
-//	long	right_num = right.getRawBits();
-//	result.setRawBits(static_cast<int>((left_num * right_num) / (1 << _FixBit)));
-//	return result;
-//}
+void				Bureaucrat::Downgrade()
+{
+	_Grade++;
+	if (_Grade > _LowestGrade)
+		throw GradeTooLowException();
+}
 
-//Bureaucrat	Bureaucrat::operator/ ( const Bureaucrat& right ) const
-//{
-//	Bureaucrat	result;
-//	if (!(right.getRawBits()))
-//	{
-//		std::cout << "0 divide detected!" << std::endl;
-//		result.setRawBits(0);
-//	}
-//	else
-//		result.setRawBits((_RawBits / right.getRawBits()) * (1 << _FixBit));
-//	return result;
-//}
+// exeption class method
+const char*		Bureaucrat::GradeTooHighException::what() const _NOEXCEPT
+{
+	return "Grade Too High";
+}
 
-//Bureaucrat&	Bureaucrat::operator++()
-//{
-//	_RawBits++;
-//	return *this;
-//}
-
-//Bureaucrat	Bureaucrat::operator++(int)
-//{
-//	Bureaucrat original = *this;
-//	++(*this);
-//	return original;
-//}
+const char*		Bureaucrat::GradeTooLowException::what() const _NOEXCEPT
+{
+	return "Grade Too Low";
+}
 
 // external function
 std::ostream&	operator<<( std::ostream& os, const Bureaucrat& right )

@@ -3,6 +3,7 @@
 
 #include <ostream>
 #include <iostream>
+#define _NOEXCEPT throw()
 
 class Bureaucrat
 {
@@ -11,26 +12,26 @@ class Bureaucrat
 		Bureaucrat( std::string name, int grade );
 		~Bureaucrat();
 		Bureaucrat( const Bureaucrat& src );
-		std::string	getName() const;
-		int			getGrade() const;
-		void		Upgrade();
-		void		Downgrade();
-		//Bureaucrat&				operator= ( const Bureaucrat& right );
-		//bool				operator> ( const Bureaucrat& right ) const;
-		//bool				operator< ( const Bureaucrat& right ) const;
-		//bool				operator>=( const Bureaucrat& right ) const;
-		//bool				operator<=( const Bureaucrat& right ) const;
-		//bool				operator==( const Bureaucrat& right ) const;
-		//bool				operator!=( const Bureaucrat& right ) const;
-		//Bureaucrat				operator+ ( const Bureaucrat& right ) const;
-		//Bureaucrat				operator- ( const Bureaucrat& right ) const;
-		//Bureaucrat				operator* ( const Bureaucrat& right ) const;
-		//Bureaucrat				operator/ ( const Bureaucrat& right ) const;
-		//Bureaucrat&				operator++();
-		//Bureaucrat				operator++(int);
+		std::string	const&	getName() const;
+		int					getGrade() const;
+		void				Upgrade();
+		void				Downgrade();
+		Bureaucrat&			operator= ( const Bureaucrat& right );
 	private:
-		std::string	_Name;
-		int			_Grade;
+		std::string	const	_Name;
+		int					_Grade;
+		static const int	_HighestGrade;
+		static const int	_LowestGrade;
+		class GradeTooHighException : public std::exception
+		{
+			public:
+				virtual const char *what() const _NOEXCEPT;
+		};
+		class GradeTooLowException : public std::exception
+		{
+			public:
+				virtual const char *what() const _NOEXCEPT;
+		};
 };
 
 std::ostream&	operator<<( std::ostream& os, const Bureaucrat& bure );
