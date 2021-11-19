@@ -46,6 +46,7 @@ int main( void )
 			Ben.Upgrade();
 		status(Ben);
 		Ben.Upgrade();
+		status(Ben);
 	}
 	catch(const std::exception& e)
 	{
@@ -59,6 +60,7 @@ int main( void )
 			Ben.Downgrade();
 		status(Ben);
 		Ben.Downgrade();
+		status(Ben);
 	}
 	catch(const std::exception& e)
 	{
