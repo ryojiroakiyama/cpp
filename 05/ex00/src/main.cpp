@@ -20,6 +20,8 @@ void	testname(std::string s)
 
 int main( void )
 {
+	Bureaucrat	B;
+	status(B);
 	testname("higher argument");
 	try
 	{

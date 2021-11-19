@@ -3,13 +3,6 @@
 const int	Bureaucrat::_HighestGrade = 1;
 const int	Bureaucrat::_LowestGrade = 150;
 
-// constructor, destructor
-Bureaucrat::Bureaucrat() : _Name("B"), _Grade(150)
-{
-	std::cout	<< "Bureaucrat default constructor"
-				<< std::endl;
-}
-
 Bureaucrat::Bureaucrat( std::string name, int grade ) : _Name(name), _Grade(grade)
 {
 	std::cout	<< "Bureaucrat constructor"
