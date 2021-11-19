@@ -58,7 +58,7 @@ void				Bureaucrat::Downgrade()
 		throw GradeTooLowException();
 }
 
-void				Bureaucrat::signForm( Form& f )
+void				Bureaucrat::signForm( Form & f )
 {
 	try
 	{
@@ -78,6 +78,18 @@ void				Bureaucrat::signForm( Form& f )
 					<< "<" << e.what() << ">"
 					<< "."
 					<< std::endl;
+	}
+}
+
+void				Bureaucrat::executeForm(Form const& form)
+{
+	try
+	{
+		form.beExcuted(*this);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
 	}
 }
 

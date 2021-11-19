@@ -72,7 +72,7 @@ void				Form::beSigned( const Bureaucrat& b )
 	_isSigned = true;
 }
 
-void				Form::beExcuted( const Bureaucrat& b )
+void				Form::beExcuted( const Bureaucrat& b ) const
 {
 	if (!getisSigned())
 		throw FormNotSigned();

@@ -19,7 +19,8 @@ class Bureaucrat
 		int					getGrade() const;
 		void				Upgrade();
 		void				Downgrade();
-		void				signForm( Form& f);
+		void				signForm( Form & f);
+		void				executeForm( Form const& form );
 		static const int	_HighestGrade;
 		static const int	_LowestGrade;
 	private:

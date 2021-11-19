@@ -1,4 +1,5 @@
 #include "ShrubberyCreationForm.hpp"
+#include <fstream>
 
 const int	ShrubberyCreationForm::ToSignGrade = 145;
 const int	ShrubberyCreationForm::ToExecuteGrade = 137;
@@ -35,22 +36,44 @@ ShrubberyCreationForm&	ShrubberyCreationForm::operator=( const ShrubberyCreation
 void	ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 {
 	(void)executor;
-	std::cout	<< "execute"
-				<< std::endl;
+	std::ofstream	outstream(getTarget() + std::string("_shrubbery"));
+	if (outstream.fail())
+		throw FailOpenFail();
+	outstream	<< "                                                         .\n"
+				<< "                                              .         ;  \n"
+				<< "                 .              .              ;%     ;;   \n"
+				<< "                   ,           ,                :;%  %;   \n"
+				<< "                    :         ;                   :;%;'     .,   \n"
+				<< "           ,.        %;     %;            ;        %;'    ,;\n"
+				<< "             ;       ;%;  %%;        ,     %;    ;%;    ,%'\n"
+				<< "              %;       %;%;      ,  ;       %;  ;%;   ,%;' \n"
+				<< "               ;%;      %;        ;%;        % ;%;  ,%;'\n"
+				<< "                `%;.     ;%;     %;'         `;%%;.%;'\n"
+				<< "                 `:;%.    ;%%. %@;        %; ;@%;%'\n"
+				<< "                    `:%;.  :;bd%;          %;@%;'\n"
+				<< "                      `@%:.  :;%.         ;@@%;'   \n"
+				<< "                        `@%.  `;@%.      ;@@%;         \n"
+				<< "                          `@%%. `@%%    ;@@%;        \n"
+				<< "                            ;@%. :@%%  %@@%;   \n";
+}
+
+const char*	ShrubberyCreationForm::FailOpenFail::what() const _NOEXCEPT
+{
+	return "fail to open file";
 }
 
 // external function
-//std::ostream&	operator<<( std::ostream& os, const ShrubberyCreationForm& right )
-//{
-//	os	<< "<" << right.getName() << ">"
-//		<< ", is signed or not "
-//		<< "<" << right.getisSigned() << ">"
-//		<< ", sign grade "
-//		<< "<" << right.getSigneGrade() << ">"
-//		<< ", execute grade "
-//		<< "<" << right.getExecuteGrade() << ">"
-//		<< ", target "
-//		<< "<" << right.getTarget() << ">"
-//		<< ".";
-//	return os;
-//}
+std::ostream&	operator<<( std::ostream& os, const ShrubberyCreationForm& right )
+{
+	os	<< "<" << right.getName() << ">"
+		<< ", is signed or not "
+		<< "<" << right.getisSigned() << ">"
+		<< ", sign grade "
+		<< "<" << right.getSigneGrade() << ">"
+		<< ", execute grade "
+		<< "<" << right.getExecuteGrade() << ">"
+		<< ", target "
+		<< "<" << right.getTarget() << ">"
+		<< ".";
+	return os;
+}

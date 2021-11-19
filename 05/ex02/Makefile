@@ -19,7 +19,7 @@ $(NAME): $(OBJS)
 
 .PHONY: clean
 clean:
-	$(RM) -rf *.dSYM
+	$(RM) -rf *.dSYM *_shrubbery
 	$(RM) -rf $(OBJS) $(DEPS)
 
 .PHONY: fclean

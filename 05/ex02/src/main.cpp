@@ -31,11 +31,15 @@ void	testname(std::string s)
 
 int main( void )
 {
-	testname("copy constructor");
+	testname("ShrubberyCreationForm");
 	try
 	{
-		ShrubberyCreationForm	s;
+		Bureaucrat b("Ben", 100);
+		ShrubberyCreationForm s("home");
+		bstatus(b);
 		fstatus(s);
+		b.signForm(s);
+		b.executeForm(s);
 	}
 	catch(const std::exception& e)
 	{
