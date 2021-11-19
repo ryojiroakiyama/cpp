@@ -30,6 +30,18 @@ void	testname(std::string s)
 
 int main( void )
 {
+	testname("copy constructor");
+	try
+	{
+		Form f1("Form1", 42, 55);
+		fstatus(f1);
+		Form f2(f1);
+		fstatus(f2);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
 	testname("higher sign grade");
 	try
 	{

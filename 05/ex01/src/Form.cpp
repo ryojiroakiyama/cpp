@@ -17,7 +17,11 @@ Form::~Form()
 				<< std::endl;
 }
 
-Form::Form( const Form& original ) : _SignGrade(150), _ExecuteGrade(1)
+Form::Form( const Form& original )
+: _Name(original.getName())
+, _isSigned(false)
+, _SignGrade(original.getSigneGrade())
+, _ExecuteGrade(original.getExecuteGrade())
 {
 	std::cout	<< "Form copy constructor"
 				<< std::endl;

@@ -20,6 +20,7 @@ Bureaucrat::~Bureaucrat()
 }
 
 Bureaucrat::Bureaucrat( const Bureaucrat& original )
+: _Name(original.getName())
 {
 	std::cout	<< "Bureaucrat copy constructor"
 				<< std::endl;
