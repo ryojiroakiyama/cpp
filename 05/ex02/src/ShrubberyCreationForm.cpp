@@ -1,7 +1,10 @@
 #include "ShrubberyCreationForm.hpp"
 
+const int	ShrubberyCreationForm::ToSignGrade = 145;
+const int	ShrubberyCreationForm::ToExecuteGrade = 137;
+
 ShrubberyCreationForm::ShrubberyCreationForm( std::string target )
-: Form("ShrubberyCreationForm", 145, 137), _Target(target)
+: Form("ShrubberyCreationForm", ToSignGrade, ToExecuteGrade, target)
 {
 	std::cout	<< "ShrubberyCreationForm constructor"
 				<< std::endl;
@@ -14,7 +17,7 @@ ShrubberyCreationForm::~ShrubberyCreationForm()
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm( const ShrubberyCreationForm& original )
-: Form("ShrubberyCreationForm", 145, 137), _Target(original._Target)
+: Form(original.getName(), ToSignGrade, ToExecuteGrade, original.getTarget())
 {
 	std::cout	<< "ShrubberyCreationForm copy constructor"
 				<< std::endl;
@@ -24,20 +27,30 @@ ShrubberyCreationForm::ShrubberyCreationForm( const ShrubberyCreationForm& origi
 // overload operator
 ShrubberyCreationForm&	ShrubberyCreationForm::operator=( const ShrubberyCreationForm& right )
 {
-	_isSigned = right._isSigned;
+	(void)right;
 	return *this;
 }
 
-// external function
-std::ostream&	operator<<( std::ostream& os, const ShrubberyCreationForm& right )
+// method
+void	ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 {
-	os	<< "<" << right.getName() << ">"
-		<< ", is signed or not "
-		<< "<" << right.getisSigned() << ">"
-		<< ", sign grade "
-		<< "<" << right.getSigneGrade() << ">"
-		<< ", execute grade "
-		<< "<" << right.getExecuteGrade() << ">"
-		<< ".";
-	return os;
+	(void)executor;
+	std::cout	<< "execute"
+				<< std::endl;
 }
+
+// external function
+//std::ostream&	operator<<( std::ostream& os, const ShrubberyCreationForm& right )
+//{
+//	os	<< "<" << right.getName() << ">"
+//		<< ", is signed or not "
+//		<< "<" << right.getisSigned() << ">"
+//		<< ", sign grade "
+//		<< "<" << right.getSigneGrade() << ">"
+//		<< ", execute grade "
+//		<< "<" << right.getExecuteGrade() << ">"
+//		<< ", target "
+//		<< "<" << right.getTarget() << ">"
+//		<< ".";
+//	return os;
+//}

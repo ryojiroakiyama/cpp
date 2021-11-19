@@ -8,13 +8,13 @@ class Bureaucrat;
 class ShrubberyCreationForm : public Form
 {
 	public:
-		ShrubberyCreationForm( std::string target = "target less");
+		ShrubberyCreationForm( std::string targe = "target less" );
 		~ShrubberyCreationForm();
 		ShrubberyCreationForm( const ShrubberyCreationForm& original );
 		ShrubberyCreationForm&	operator= ( const ShrubberyCreationForm& right );
 		virtual void			execute(Bureaucrat const & executor) const;
-	private:
-		const std::string		_Target;
+		static const int		ToSignGrade;
+		static const int		ToExecuteGrade;
 };
 
 std::ostream&	operator<<( std::ostream& os, const ShrubberyCreationForm& right );

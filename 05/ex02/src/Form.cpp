@@ -1,7 +1,11 @@
 #include "Form.hpp"
 
-Form::Form( std::string name, int sgrade, int egrade )
-: _Name(name), _isSigned(false),  _SignGrade(sgrade), _ExecuteGrade(egrade)
+Form::Form( std::string name, int sgrade, int egrade , std::string target)
+: _Name(name)
+, _isSigned(false)
+, _SignGrade(sgrade)
+, _ExecuteGrade(egrade)
+, _Target(target)
 {
 	std::cout	<< "Form constructor"
 				<< std::endl;
@@ -22,6 +26,7 @@ Form::Form( const Form& original )
 , _isSigned(false)
 , _SignGrade(original.getSigneGrade())
 , _ExecuteGrade(original.getExecuteGrade())
+, _Target(original.getTarget())
 {
 	std::cout	<< "Form copy constructor"
 				<< std::endl;
@@ -45,21 +50,35 @@ bool				Form::getisSigned() const
 	return _isSigned;
 }
 
-int			Form::getSigneGrade() const
+int					Form::getSigneGrade() const
 {
 	return _SignGrade;
 }
 
-int			Form::getExecuteGrade() const
+int					Form::getExecuteGrade() const
 {
 	return _ExecuteGrade;
 }
 
+const std::string&	Form::getTarget() const
+{
+	return _Target;
+}
+
 void				Form::beSigned( const Bureaucrat& b )
 {
-	if (b.getGrade() > _SignGrade)
+	if (b.getGrade() > getSigneGrade())
 		throw GradeTooLowException();
 	_isSigned = true;
+}
+
+void				Form::beExcuted( const Bureaucrat& b )
+{
+	if (!getisSigned())
+		throw FormNotSigned();
+	if (b.getGrade() > getExecuteGrade())
+		throw GradeTooLowException();
+	execute(b);
 }
 
 // exeption class method
@@ -73,6 +92,12 @@ const char*		Form::GradeTooLowException::what() const _NOEXCEPT
 	return "sign Grade Too Low";
 }
 
+
+const char*		Form::FormNotSigned::what() const _NOEXCEPT
+{
+	return "form is not signed";
+}
+
 // external function
 std::ostream&	operator<<( std::ostream& os, const Form& right )
 {
@@ -83,6 +108,8 @@ std::ostream&	operator<<( std::ostream& os, const Form& right )
 		<< "<" << right.getSigneGrade() << ">"
 		<< ", execute grade "
 		<< "<" << right.getExecuteGrade() << ">"
+		<< ", target "
+		<< "<" << right.getTarget() << ">"
 		<< ".";
 	return os;
 }
