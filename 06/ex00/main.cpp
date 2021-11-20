@@ -12,82 +12,62 @@ enum e_type
 	TYPE_NUM//6
 };
 
-e_type	get_type(std::string src)
+e_type	get_type(double& num, const std::string& src)
 {
 	if (src == "-inff" || src == "+inff" || src == "nanf")
+	{
+		num = std::stof(src);
 		return FLOAT_PSEUDO;
+	}
 	else if (src == "-inf" || src == "+inf" || src == "nan")
+	{
+		num = std::stod(src);
 		return DOUBLE_PSEUDO;
-	else if (src.size() == 1 && 'a' <= src.at(0) && src.at(0))
+	}
+	else if (src.size() == 1 && isprint(src.at(0) && !isnumber(src.at(0))))
+	{
+		num = src.at(0);
 		return CHAR;
+	}
 	else if (src.at(src.size() - 1) == 'f')
+	{
+		num = std::stof(src);
 		return FLOAT;
+	}
 	else if (src.find('.') != std::string::npos)
+	{
+		num = std::stod(src);
 		return DOUBLE;
+	}
 	else
+	{
+		num = std::stoi(src);
 		return INT;
+	}
 }
 
 int main(int argc, char *argv[])
 {
+	if (argc != 2)
+	{
+		std::cout	<< "invalid arguments number"
+					<< std::endl;
+		return 0;
+	}
+	std::string	src(argv[1]);
+	double		num;
+	e_type		type;
 	try
 	{
-		if (argc != 2)
-			throw "invalid arguments number";
-		std::string	src(argv[1]);
-		std::cout << get_type(src) << std::endl;
-		//try
-		//{
-		//	std::cout	<< "c:"
-		//				<< static_cast<char>(std::stoi(src))
-		//				<< std::endl;
-		//}
-		//catch(const std::exception& e)
-		//{
-		//	std::cout	<< "impossible" << std::endl;
-		//	std::cerr	<< e.what() << std::endl;
-		//}
-		//try
-		//{
-		//	std::cout	<< "int:"
-		//				<< std::stoi(src)
-		//				<< std::endl;
-		//}
-		//catch(const std::exception& e)
-		//{
-		//	std::cout	<< "impossible" << std::endl;
-		//	std::cerr	<< e.what() << std::endl;
-		//}
-		//try
-		//{
-		//	std::cout	<< "float:"
-		//				<< std::stof(src)
-		//				<< std::endl;
-		//}
-		//catch(const std::exception& e)
-		//{
-		//	std::cout 	<< "impossible" << std::endl;
-		//	std::cerr 	<< e.what() << std::endl;
-		//}
-		//try
-		//{
-		//	std::cout	<< "double:"
-		//				<< std::stod(src)
-		//				<< std::endl;
-		//}
-		//catch(const std::exception& e)
-		//{
-		//	std::cout 	<< "impossible" << std::endl;
-		//	std::cerr 	<< e.what() << std::endl;
-		//}
-	}
-	catch(const char *message)
-	{
-		std::cerr	<< message
-					<< std::endl;
+		type = get_type(num, src);
+		std::cout << type << std::endl;
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << e.what() << std::endl;
+		std::cout	<< "char: impossible\n"
+					<< "int: impossible\n"
+					<< "float: impossible\n"
+					<< "double: impossible\n";
 	}
 }
+//switch char->int->float->double?
