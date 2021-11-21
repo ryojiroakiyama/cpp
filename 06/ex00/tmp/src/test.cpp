@@ -1,5 +1,6 @@
 #include <iostream>
 #include <sstream>
+#include <iomanip>
 
 int main(int argc, char *argv[])
 {
@@ -35,8 +36,9 @@ int main(int argc, char *argv[])
 			std::cout	<< "float:"
 						<< std::stof(src)
 						<< std::endl;
-			std::cout	<< static_cast<int>(std::stof(src)) << std::endl;
-			std::cout	<< static_cast<double>(std::stof(src)) << std::endl;
+			std::cout	<< std::setprecision(15) << std::stof(src) << std::endl;
+			std::cout	<< std::setprecision(15) << static_cast<int>(std::stof(src)) << std::endl;
+			std::cout	<< std::setprecision(15) << static_cast<double>(std::stof(src)) << std::endl;
 		}
 		catch(const std::exception& e)
 		{
