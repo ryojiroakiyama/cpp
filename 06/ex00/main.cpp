@@ -124,7 +124,7 @@ int main(int argc, char *argv[])
 		}
 		else if (type == FLOAT)
 		{
-			float num = std::stof(src);
+			//float num = std::stof(src);
 			//if (num < static_cast<float>(CMIN) || )
 		}
 	}
