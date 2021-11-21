@@ -35,3 +35,9 @@ test 300
 test 2147483647
 test +2147483648
 test 0.0f
+test +inff
+test -inff
+test nanf
+test +inf
+test -inf
+test nan

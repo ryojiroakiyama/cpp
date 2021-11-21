@@ -186,13 +186,13 @@ int main(int argc, char *argv[])
 			DtoF(num, precision);
 			putDouble(num, precision, true);
 		}
-		else
+		else if (type == DOUBLE_PSEUDO)
 		{
 			float num = std::stof(src);
 			precision = 0;
 			putChar(num, false);
 			putInt(num, false);
-			DtoF(num, precision);
+			putFloat(num, precision, true);
 			putDouble(num, precision, true);
 		}
 	}
