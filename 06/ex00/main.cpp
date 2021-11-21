@@ -126,7 +126,7 @@ void	DtoI(double num)
 
 void	DtoF(double num, int precision)
 {
-	if (num < static_cast<double>(FMIN) || static_cast<double>(FMAX) < num)
+	if (num < -static_cast<double>(FMAX) || static_cast<double>(FMAX) < num)
 		putFloat(num, precision, false);
 	else
 		putFloat(static_cast<float>(num), precision, true);
