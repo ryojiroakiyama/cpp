@@ -162,7 +162,7 @@ int main(int argc, char *argv[])
 		else if (type == FLOAT)
 		{
 			float num = std::stof(src);
-			precision = src.size() - src.find('.') - 1;
+			precision = src.size() - src.find('.') - 2;
 			FtoC(num);
 			FtoI(num);
 			putFloat(num, precision, true);

@@ -22,9 +22,16 @@ test ()
 	bash -c "$EXECUTE $1"
 }
 
-test "0"
-test "a"
-test "z"
-test "100"
-test "127"
-test "270"
+test -129
+test -128
+test !
+test a
+test "\~"
+test +127
+test +128
+test -2147483649
+test -2147483648
+test 300
+test 2147483647
+test +2147483648
+test 0.0f
