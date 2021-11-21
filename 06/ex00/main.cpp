@@ -24,7 +24,7 @@ e_type	get_type(double& num, const std::string& src)
 		num = std::stod(src);
 		return DOUBLE_PSEUDO;
 	}
-	else if (src.size() == 1 && isprint(src.at(0) && !isnumber(src.at(0))))
+	else if (src.size() == 1 && !isdigit(src.at(0)) && isprint(src.at(0)))
 	{
 		num = src.at(0);
 		return CHAR;
@@ -46,21 +46,44 @@ e_type	get_type(double& num, const std::string& src)
 	}
 }
 
+void	put_char(double num, e_type type)
+{
+	std::cout			<< "char: ";
+	if (type == CHAR)
+		std::cout		<< static_cast<char>(num);
+	else if (type == FLOAT_PSEUDO || type == DOUBLE_PSEUDO)
+		std::cout		<< "impossible";
+	else
+	{
+		double max = static_cast<double>(std::numeric_limits<char>::max());
+		double min = static_cast<double>(std::numeric_limits<char>::min());
+		if (num < min || max < num)
+			std::cout	<< "impossible";
+		else if (isprint(static_cast<int>(num)))
+			std::cout	<< static_cast<char>(num);
+		else
+			std::cout	<< "Non displayable";
+	}
+	std::cout			<< std::endl;
+}
+
 int main(int argc, char *argv[])
 {
-	if (argc != 2)
-	{
-		std::cout	<< "invalid arguments number"
-					<< std::endl;
-		return 0;
-	}
-	std::string	src(argv[1]);
-	double		num;
-	e_type		type;
 	try
 	{
+		if (argc != 2)
+			throw "invalid arguments number";
+		std::string	src(argv[1]);
+		double		num;
+		e_type		type;
 		type = get_type(num, src);
 		std::cout << type << std::endl;
+		put_char(num, type);
+	}
+	catch(const char *message)
+	{
+		std::cerr	<< message
+					<< std::endl;
 	}
 	catch(const std::exception& e)
 	{
