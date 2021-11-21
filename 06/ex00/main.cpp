@@ -1,5 +1,6 @@
 #include <iostream>
-#include <sstream>
+#include <iomanip>
+
 
 #define CMAX std::numeric_limits<char>::max()
 #define CMIN std::numeric_limits<char>::min()
@@ -14,8 +15,8 @@
 #define I "int: "
 #define F "float: "
 #define D "double: "
-#define IP "impossible"
-#define ND "Non displayable"
+#define IMPOSSIBLE "impossible"
+#define NODISPLAY "Non displayable"
 
 enum e_type
 {
@@ -44,54 +45,91 @@ e_type	getType(const std::string& src)
 		return INT;
 }
 
-bool	isSafe_ItoC(int num)
+void	putChar(char num, bool possible)
+{
+	if (possible)
+	{
+		if (isprint(num))
+			std::cout	<< C << "'" << num << "'" << std::endl;
+		else
+			std::cout	<< C << NODISPLAY << std::endl;
+	}
+	else
+		std::cout	<< C << IMPOSSIBLE << std::endl;
+}
+
+void	putInt(int num, bool possible)
+{
+	if (possible)
+		std::cout	<< I << num << std::endl;
+	else
+		std::cout	<< I << IMPOSSIBLE << std::endl;
+}
+
+void	putFloat(float num, int precision, bool possible)
+{
+	if (possible)
+		std::cout	<< std::fixed << std::setprecision(precision)
+					<< F << num << "f" << std::endl;
+	else
+		std::cout	<< F << IMPOSSIBLE << std::endl;
+}
+
+void	putDouble(double num, int precision, bool possible)
+{
+	if (possible)
+		std::cout	<< std::fixed << std::setprecision(precision)
+					<< D << num << std::endl;
+	else
+		std::cout	<< D << IMPOSSIBLE << std::endl;
+}
+
+void	ItoC(int num)
 {
 	if (num < static_cast<int>(CMIN) || static_cast<int>(CMAX) < num)
-		return false;
-	return true;
+		putChar(num, false);
+	else
+		putChar(static_cast<char>(num), true);
 }
 
-bool	isSafe_FtoC(float num)
+void	FtoC(float num)
 {
 	if (num < static_cast<float>(CMIN) || static_cast<float>(CMAX) < num)
-		return false;
-	return true;
+		putChar(num, false);
+	else
+		putChar(static_cast<char>(num), true);
 }
 
-bool	isSafe_FtoI(float num)
+void	FtoI(float num)
 {
 	if (num < static_cast<float>(IMIN) || static_cast<float>(IMAX) < num)
-		return false;
-	return true;
+		putInt(num, false);
+	else
+		putInt(static_cast<int>(num), true);
 }
 
-bool	isSafe_DtoC(double num)
+void	DtoC(double num)
 {
 	if (num < static_cast<double>(CMIN) || static_cast<double>(CMAX) < num)
-		return false;
-	return true;
+		putChar(num, false);
+	else
+		putChar(static_cast<char>(num), true);
 }
 
-bool	isSafe_DtoI(double num)
+void	DtoI(double num)
 {
 	if (num < static_cast<double>(IMIN) || static_cast<double>(IMAX) < num)
-		return false;
-	return true;
+		putInt(num, false);
+	else
+		putInt(static_cast<int>(num), true);
 }
 
-bool	isSafe_DtoF(double num)
+void	DtoF(double num, int precision)
 {
 	if (num < static_cast<double>(FMIN) || static_cast<double>(FMAX) < num)
-		return false;
-	return true;
-}
-
-void	putChar(char num)
-{
-	if (isprint(num))
-		std::cout	<< C << num << std::endl;
+		putFloat(num, precision, false);
 	else
-		std::cout	<< C << ND << std::endl;
+		putFloat(static_cast<float>(num), precision, true);
 }
 
 int main(int argc, char *argv[])
@@ -102,30 +140,60 @@ int main(int argc, char *argv[])
 			throw "invalid arguments number";
 		std::string	src(argv[1]);
 		e_type		type = getType(src);
-		std::cout << type << std::endl;
+		int			precision;
 		if (type == CHAR)
 		{
 			int num = static_cast<int>(src.at(0));
-			std::cout	<< C << src.at(0) << std::endl;
-			std::cout	<< I << num << std::endl;
-			std::cout	<< F << num << ".0f" << std::endl;
-			std::cout	<< D << num << ".0" << std::endl;
+			precision = 1;
+			putChar(src.at(0), true);
+			putInt(num, true);
+			putFloat(num, precision, true);
+			putDouble(num, precision, true);
 		}
 		else if (type == INT)
 		{
 			int num = std::stoi(src);
-			if (isSafe_ItoC(num))
-				putChar(static_cast<char>(num));
-			else
-				std::cout	<< C << IP << std::endl;
-			std::cout	<< I << num << std::endl;
-			std::cout	<< F << num << ".0f" << std::endl;
-			std::cout	<< D << num << ".0" << std::endl;
+			precision = 1;
+			ItoC(num);
+			putInt(num, true);
+			putFloat(num, precision, true);
+			putDouble(num, precision, true);
 		}
 		else if (type == FLOAT)
 		{
-			//float num = std::stof(src);
-			//if (num < static_cast<float>(CMIN) || )
+			float num = std::stof(src);
+			precision = src.size() - src.find('.') - 1;
+			FtoC(num);
+			FtoI(num);
+			putFloat(num, precision, true);
+			putDouble(num, precision, true);
+		}
+		else if (type == FLOAT_PSEUDO)
+		{
+			float num = std::stof(src);
+			precision = 0;
+			putChar(num, false);
+			putInt(num, false);
+			putFloat(num, precision, true);
+			putDouble(num, precision, true);
+		}
+		else if (type == DOUBLE)
+		{
+			double num = std::stod(src);
+			precision = src.size() - src.find('.') - 1;
+			DtoC(num);
+			DtoI(num);
+			DtoF(num, precision);
+			putDouble(num, precision, true);
+		}
+		else
+		{
+			float num = std::stof(src);
+			precision = 0;
+			putChar(num, false);
+			putInt(num, false);
+			DtoF(num, precision);
+			putDouble(num, precision, true);
 		}
 	}
 	catch(const char *message)
@@ -135,10 +203,9 @@ int main(int argc, char *argv[])
 	}
 	catch(const std::exception& e)
 	{
-		std::cout	<< C << IP << std::endl
-					<< I << IP << std::endl
-					<< F << IP << std::endl
-					<< D << IP << std::endl;
+		putChar(0, false);
+		putInt(0, false);
+		putFloat(0, 0, false);
+		putDouble(0, 0, false);
 	}
 }
-//switch char->int->float->double?
