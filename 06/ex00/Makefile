@@ -26,6 +26,10 @@ fclean: clean
 .PHONY: re
 re: fclean all
 
+.PHONY: test
+test: $(NAME)
+	./test.sh
+
 .PHONY: debug
 debug: CXXFLAGS += -g -fsanitize=integer -fsanitize=address -fsanitize=leak
 debug: re
