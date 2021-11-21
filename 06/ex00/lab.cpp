@@ -1,9 +1,16 @@
 #include <iostream>
 #include <sstream>
 #include <iomanip>
+#include <float.h>
 
 int main(int argc, char *argv[])
 {
+	std::cout	<< std::numeric_limits<float>::max() << std::endl;
+	std::cout	<< std::numeric_limits<float>::min() << std::endl;
+	std::cout	<< std::setprecision(1000) << std::numeric_limits<float>::max() << std::endl;
+	std::cout	<< std::setprecision(1000) << std::numeric_limits<float>::min() << std::endl;
+	std::cout	<< std::setprecision(1000) << std::numeric_limits<double>::max() << std::endl;
+	std::cout	<< std::setprecision(1000) << std::numeric_limits<double>::min() << std::endl;
 	try
 	{
 		if (argc != 2)
