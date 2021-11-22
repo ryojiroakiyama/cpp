@@ -1,6 +1,6 @@
 NAME		=	Template
 CXX			=	clang++
-CXXFLAGS	=	-Wall -Werror -Wextra -std=c++98 -pedantic -MMD -MP -I $(INCDIR)
+CXXFLAGS	=	-Wall -Werror -Wextra -std=c++98 -fno-inline -pedantic -MMD -MP -I $(INCDIR)
 INCDIR		=	.
 SRCDIR		=	.
 SRCNAME		=	main.cpp

@@ -1,28 +1,19 @@
 #ifndef ITER_HPP
 #define ITER_HPP
 
+#include <iostream>
+
 template <typename T>
-void	swap(T& x, T& y)
+void	iter(T array[], const size_t length, void (*function)(T))
 {
-	T tmp = x;
-	x = y;
-	y = tmp;
+	for (size_t idx = 0; idx < length; idx++)
+		function(array[idx]);
 }
 
 template <typename T>
-T		min(T x, T y)
+void	put_element(T element)
 {
-	if (x < y)
-		return x;
-	return y;
-}
-
-template <typename T>
-T		max(T x, T y)
-{
-	if (x > y)
-		return x;
-	return y;
+	std::cout << element << std::endl;
 }
 
 #endif
