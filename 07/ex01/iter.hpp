@@ -4,7 +4,7 @@
 #include <iostream>
 
 template <typename T>
-void	iter(T array[], const size_t length, void (*function)(T))
+void	iter(const T array[], const size_t length, void (*function)(T))
 {
 	for (size_t idx = 0; idx < length; idx++)
 		function(array[idx]);

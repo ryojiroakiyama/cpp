@@ -61,6 +61,19 @@ int main(void)
 	test<void*>("void*", 500);
 	test<unsigned int*>("unsingned int*", 2);
 	const_test<int>("int", 5);
+
+ 	unsigned int sizeA = 5;
+	unsigned int sizeB = 10;
+	Array<int> A(sizeA);
+	Array<int> B(sizeB);
+	std::cout	<< CYAN << "[inside array before]" << RESET<< std::endl;
+	for (unsigned int idx = 0; idx < sizeA; idx++)
+		std::cout << idx << ":" << A[idx] << std::endl;
+	B[5] = 5;
+	A = B;
+	std::cout	<< CYAN << "[inside array after]" << RESET<< std::endl;
+	for (unsigned int idx = 0; idx < sizeB; idx++)
+		std::cout << idx << ":" << A[idx] << std::endl;
 	/*
 	** test<char*> -> segv.
 	** std::cout access null pointer's contents
