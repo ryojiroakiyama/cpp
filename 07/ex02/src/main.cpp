@@ -31,6 +31,25 @@ void	test(std::string s, unsigned int size)
 	}
 }
 
+template <typename T>
+void	const_test(std::string s, unsigned int size)
+{
+	try
+	{
+		std::cout << CYAN << "const test[" << s << "]" << RESET<< std::endl;
+		const Array<T> A(size);
+		std::cout	<< GREEN << "size : " << RESET << A.size() << std::endl;
+		access(A, 0);
+		access(A, size / 2);
+		access(A, size - 1);
+		access(A, size);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+}
+
 int main(void)
 {
 	test<int>("empyt", 0);
@@ -41,6 +60,7 @@ int main(void)
 	test<double>("double", 42);
 	test<void*>("void*", 500);
 	test<unsigned int*>("unsingned int*", 2);
+	const_test<int>("int", 5);
 	/*
 	** test<char*> -> segv.
 	** std::cout access null pointer's contents

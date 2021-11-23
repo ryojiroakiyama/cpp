@@ -13,6 +13,7 @@ class Array
 		Array(const Array& original);
 		Array&			operator= (const Array& right);
 		T&				operator[](unsigned int idx);
+		const T&		operator[](unsigned int idx) const;
 		unsigned int	size() const;
 	private:
 		T*				_Array;
@@ -48,6 +49,14 @@ Array<T>&	Array<T>::operator=(const Array& right)
 
 template <typename T>
 T&			Array<T>::operator[](unsigned int idx)
+{
+	if (_Size == 0 || (idx > _Size - 1))
+		throw std::exception();
+	return _Array[idx];
+}
+
+template <typename T>
+const T&	Array<T>::operator[](unsigned int idx) const
 {
 	if (_Size == 0 || (idx > _Size - 1))
 		throw std::exception();
