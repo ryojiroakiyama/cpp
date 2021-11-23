@@ -39,8 +39,13 @@ int main(void)
 	test<std::string>("string", 1);
 	test<float>("float", 200);
 	test<double>("double", 42);
+	test<void*>("void*", 500);
+	test<unsigned int*>("unsingned int*", 2);
 	/*
-	** test<char*> -> segv witch same behavior as below
+	** test<char*> -> segv.
+	** std::cout access null pointer's contents
+	** that same behavior as below.
+	** code:
 	** char** a = new char*[5]();
 	** std::cout << a << std::endl;
 	** delete [] a;
