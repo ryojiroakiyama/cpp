@@ -12,7 +12,7 @@ class ShrubberyCreationForm : public Form
 		~ShrubberyCreationForm();
 		ShrubberyCreationForm( const ShrubberyCreationForm& original );
 		ShrubberyCreationForm&	operator= ( const ShrubberyCreationForm& right );
-		virtual void			execute(Bureaucrat const & executor) const;
+		virtual void			action() const;
 	private:
 		static const int		ToSignGrade;
 		static const int		ToExecuteGrade;

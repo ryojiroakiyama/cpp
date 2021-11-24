@@ -34,9 +34,8 @@ RobotomyRequestForm&	RobotomyRequestForm::operator=( const RobotomyRequestForm& 
 }
 
 // method
-void	RobotomyRequestForm::execute(Bureaucrat const & executor) const
+void	RobotomyRequestForm::action() const
 {
-	(void)executor;
 	std::cout	<< "wheeeeeeeee"
 				<< std::endl;
 	std::srand( time(0) );

@@ -12,7 +12,7 @@ class RobotomyRequestForm : public Form
 		~RobotomyRequestForm();
 		RobotomyRequestForm( const RobotomyRequestForm& original );
 		RobotomyRequestForm&	operator= ( const RobotomyRequestForm& right );
-		virtual void			execute(Bureaucrat const & executor) const;
+		virtual void			action() const;
 	private:
 		static const int		ToSignGrade;
 		static const int		ToExecuteGrade;

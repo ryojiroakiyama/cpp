@@ -72,13 +72,13 @@ void				Form::beSigned( const Bureaucrat& b )
 	_isSigned = true;
 }
 
-void				Form::beExcuted( const Bureaucrat& b ) const
+void				Form::execute( const Bureaucrat& b ) const
 {
 	if (!getisSigned())
 		throw FormNotSigned();
 	if (b.getGrade() > getExecuteGrade())
 		throw GradeTooLowException();
-	execute(b);
+	action();
 }
 
 // exeption class method

@@ -33,9 +33,8 @@ ShrubberyCreationForm&	ShrubberyCreationForm::operator=( const ShrubberyCreation
 }
 
 // method
-void	ShrubberyCreationForm::execute(Bureaucrat const & executor) const
+void	ShrubberyCreationForm::action() const
 {
-	(void)executor;
 	std::ofstream	outstream(getTarget() + std::string("_shrubbery"));
 	if (outstream.fail())
 		throw FailOpenFail();
