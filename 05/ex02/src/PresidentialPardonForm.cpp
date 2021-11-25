@@ -36,21 +36,9 @@ PresidentialPardonForm&	PresidentialPardonForm::operator=( const PresidentialPar
 // method
 void	PresidentialPardonForm::action() const
 {
-	std::cout	<< "wheeeeeeeee"
+	std::cout	<< "<" << getTarget() << ">"
+				<< " has been pardoned by Zafod Beeblebrox."
 				<< std::endl;
-	std::srand( time(0) );
-	if (std::rand() % 2 == 0)
-	{
-		std::cout	<< "<" << getTarget() << ">"
-					<< " has been robotomized successfully."
-					<< std::endl;
-	}
-	else
-	{
-		std::cout	<< "<" << getTarget() << ">"
-			<< " Failed to robotomize."
-			<< std::endl;
-	}
 }
 
 // external function

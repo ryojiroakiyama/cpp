@@ -2,24 +2,18 @@
 #include "Form.hpp"
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 #include "escape_sequence.hpp"
 
-void	bstatus(Bureaucrat &b)
+void	test(Bureaucrat &B, Form *F)
 {
+	std::cout	<< GREEN;
+	B.signForm(*F);
+	B.executeForm(*F);
 	std::cout	<< MAGENTA
-				<< "[status] "
-				<< b
-				<< RESET
-				<< std::endl;
-}
-
-void	fstatus(Form &f)
-{
-	std::cout	<< MAGENTA
-				<< "[status] "
-				<< f
-				<< RESET
-				<< std::endl;
+				<< "[Bureaucrat] " << B << std::endl
+				<< "[Form]" << *F << std::endl
+				<< RESET;
 }
 
 void	testname(std::string s)
@@ -35,12 +29,9 @@ int main( void )
 	testname("ShrubberyCreationForm");
 	try
 	{
-		Bureaucrat b("Ben", 100);
-		ShrubberyCreationForm s("home");
-		b.signForm(s);
-		b.executeForm(s);
-		bstatus(b);
-		fstatus(s);
+		Bureaucrat B("Ben", 100);
+		ShrubberyCreationForm S("home");
+		test(B, &S);
 	}
 	catch(const std::exception& e)
 	{
@@ -49,12 +40,20 @@ int main( void )
 	testname("RobotomyRequestForm");
 	try
 	{
-		Bureaucrat b("Ben", 35);
-		RobotomyRequestForm s("home");
-		b.signForm(s);
-		b.executeForm(s);
-		bstatus(b);
-		fstatus(s);
+		Bureaucrat B("Ben", 35);
+		RobotomyRequestForm R("home");
+		test(B, &R);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+	testname("PresidentialPardonForm");
+	try
+	{
+		Bureaucrat B("Ben", 5);
+		PresidentialPardonForm P("home");
+		test(B, &P);
 	}
 	catch(const std::exception& e)
 	{
