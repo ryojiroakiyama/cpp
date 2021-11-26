@@ -5,7 +5,7 @@
 // constructor, destructor
 Fixed::Fixed() : _RawBits(0) {}
 Fixed::Fixed( const int value ) : _RawBits(value * (1 << _FixBit)) {}
-Fixed::Fixed( const float value ) : _RawBits(static_cast<int>(roundf(value * (1 << _FixBit)))) {}
+Fixed::Fixed( const float value ) : _RawBits(static_cast<int>(std::roundf(value * (1 << _FixBit)))) {}
 Fixed::~Fixed() {}
 Fixed::Fixed( const Fixed& original ) { *this = original; }
 
@@ -51,12 +51,10 @@ Fixed	Fixed::operator/ ( const Fixed& right ) const
 {
 	Fixed	result;
 	if (!(right.getRawBits()))
-	{
-		std::cout << "0 divide detected!" << std::endl;
-		result.setRawBits(0);
-	}
-	else
-		result.setRawBits((_RawBits / right.getRawBits()) * (1 << _FixBit));
+		throw std::exception();
+	long	left_num = this->getRawBits();
+	long	right_num = right.getRawBits();
+	result.setRawBits(static_cast<int>((left_num / right_num) * (1 << _FixBit)));
 	return result;
 }
 

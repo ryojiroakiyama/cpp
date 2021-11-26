@@ -8,6 +8,7 @@ SRCNAME		=	main.cpp \
 SRCS		=	$(addprefix $(SRCDIR)/, $(SRCNAME))
 OBJS		=	$(SRCS:.cpp=.o)
 DEPS		=	$(OBJS:.o=.d)
+TEST		=	./test.sh
 
 .PHONY: all
 all: $(NAME)
@@ -26,6 +27,10 @@ fclean: clean
 
 .PHONY: re
 re: fclean all
+
+.PHONY: test
+test: $(NAME)
+	$(TEST)
 
 .PHONY: debug
 debug: CXXFLAGS += -g -fsanitize=integer -fsanitize=address -fsanitize=leak
