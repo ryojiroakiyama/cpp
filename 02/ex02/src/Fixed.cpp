@@ -5,7 +5,7 @@
 // constructor, destructor
 Fixed::Fixed() : _RawBits(0) {}
 Fixed::Fixed( const int value ) : _RawBits(value * (1 << _FixBit)) {}
-Fixed::Fixed( const float value ) : _RawBits(roundf(value * (1 << _FixBit))) {}
+Fixed::Fixed( const float value ) : _RawBits(static_cast<int>(roundf(value * (1 << _FixBit)))) {}
 Fixed::~Fixed() {}
 Fixed::Fixed( const Fixed& original ) { *this = original; }
 

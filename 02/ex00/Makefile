@@ -18,7 +18,7 @@ $(NAME): $(OBJS)
 
 .PHONY: clean
 clean:
-	$(RM) -f *.dSYM
+	$(RM) -rf *.dSYM
 	$(RM) -f $(OBJS) $(DEPS)
 
 .PHONY: fclean

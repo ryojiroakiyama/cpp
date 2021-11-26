@@ -18,11 +18,11 @@ $(NAME): $(OBJS)
 .PHONY: clean
 clean:
 	$(RM) -rf *.dSYM
-	$(RM) -rf $(OBJS) $(DEPS)
+	$(RM) -f $(OBJS) $(DEPS)
 
 .PHONY: fclean
 fclean: clean
-	$(RM) -rf $(NAME)
+	$(RM) -f $(NAME)
 
 .PHONY: re
 re: fclean all
