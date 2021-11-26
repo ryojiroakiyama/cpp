@@ -60,7 +60,7 @@ Fixed	Fixed::operator/ ( const Fixed& right ) const
 
 Fixed&	Fixed::operator++()
 {
-	_RawBits++;
+	++_RawBits;
 	return *this;
 }
 
@@ -73,7 +73,7 @@ Fixed	Fixed::operator++(int)
 
 Fixed&	Fixed::operator--()
 {
-	_RawBits--;
+	--_RawBits;
 	return *this;
 }
 
