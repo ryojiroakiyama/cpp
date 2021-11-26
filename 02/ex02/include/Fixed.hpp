@@ -34,7 +34,7 @@ class Fixed
 		static const Fixed&	max(const Fixed& a, const Fixed& b);
 	private:
 		int					_RawBits;
-		static const int	_FixBit;
+		static const int	_FixBit = 8;
 };
 
 std::ostream&	operator<<( std::ostream& os, const Fixed& src );

@@ -2,8 +2,6 @@
 #include <iostream>
 #include <cmath>
 
-const int	Fixed::_FixBit = 8;
-
 // constructor, destructor
 Fixed::Fixed() : _RawBits(0)
 {

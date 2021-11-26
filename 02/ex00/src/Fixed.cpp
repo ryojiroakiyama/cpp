@@ -1,8 +1,6 @@
 #include "Fixed.hpp"
 #include <iostream>
 
-const int	Fixed::_FixBit = 8;
-
 Fixed::Fixed() : _RawBits(0)
 {
 	std::cout << "Default constructor called" << std::endl;

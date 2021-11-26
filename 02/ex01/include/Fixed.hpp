@@ -18,7 +18,7 @@ class Fixed
 		Fixed&				operator=( const Fixed& src );
 	private:
 		int					_RawBits;
-		static const int	_FixBit;
+		static const int	_FixBit = 8;
 };
 
 std::ostream&	operator<<( std::ostream& os, const Fixed& src );
