@@ -71,6 +71,19 @@ Fixed	Fixed::operator++(int)
 	return original;
 }
 
+Fixed&	Fixed::operator--()
+{
+	_RawBits--;
+	return *this;
+}
+
+Fixed	Fixed::operator--(int)
+{
+	Fixed original = *this;
+	--(*this);
+	return original;
+}
+
 // min, max
 Fixed&			Fixed::min( Fixed& a, Fixed& b )
 {
