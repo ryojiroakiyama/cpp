@@ -26,5 +26,6 @@ int main()
 				<< std::endl;
 	for (int i = 0; i < num; i++)
 		delete animals[i];
-	std::cout	<< RESET;
+	std::cout	<< RESET << std::flush;
+	system("leaks Brain");
 }
