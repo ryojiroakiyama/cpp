@@ -102,7 +102,7 @@ void	FtoC(float num)
 
 void	FtoI(float num)
 {
-	if (num < static_cast<float>(IMIN) || static_cast<float>(IMAX) < num)
+	if (num < static_cast<double>(IMIN) || static_cast<double>(IMAX) < num)
 		putInt(num, false);
 	else
 		putInt(static_cast<int>(num), true);
