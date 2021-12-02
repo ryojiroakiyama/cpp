@@ -33,26 +33,27 @@ title ()
 border ()
 {
 	printf $YELLOW
-	echo "------------$1"
+	echo "-------------$1"
 	printf $RESET
 }
 
 title char
+test !
+test abc
+test a
+test "\~"
+
+title int
+test -2147483649
+border INT_MIN
+test -2147483648
 test -129
 border CHAR_MIN
 test -128
 test 0
-test !
-test a
-test "\~"
 test +127
 border CHAR_MAX
 test +128
-
-title int
-test -2147483649
-echo INT_MIN
-test -2147483648
 test 300
 test 2147483647
 border INT_MAX
@@ -62,13 +63,14 @@ title float
 test -inff
 border -FLOAT_MIN
 test -340282346638528859811704183484516925440f
+test -2147483649f
 border INT_MIN
 test -2147483648f
 test 0.0f
 test nanf
 test 1.1754943508222875079687365372222456778186655567720875215087517062784172594547271728515625e-38f
 border FLOAT_MIN
-test 42.0f
+test 42.0220f
 test 2147483647f
 border INT_MAX
 test 340282346638528859811704183484516925440f

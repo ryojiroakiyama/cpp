@@ -1,32 +1,25 @@
 #include <iostream>
 #include <iomanip>
 
+#define CMAX static_cast<double>(std::numeric_limits<char>::max())
+#define CMIN static_cast<double>(std::numeric_limits<char>::min())
+#define IMAX static_cast<double>(std::numeric_limits<int>::max())
+#define IMIN static_cast<double>(std::numeric_limits<int>::min())
+#define FMAX static_cast<double>(std::numeric_limits<float>::max())
 
-#define CMAX std::numeric_limits<char>::max()
-#define CMIN std::numeric_limits<char>::min()
-#define IMAX std::numeric_limits<int>::max()
-#define IMIN std::numeric_limits<int>::min()
-#define FMAX std::numeric_limits<float>::max()
-#define FMIN std::numeric_limits<float>::min()
-#define DMAX std::numeric_limits<double>::max()
-#define DMIN std::numeric_limits<double>::min()
-
-#define C "char: "
-#define I "int: "
-#define F "float: "
-#define D "double: "
 #define IMPOSSIBLE "impossible"
 #define NODISPLAY "Non displayable"
+#define TITLE_W 8
 
 enum e_type
 {
-	CHAR,//0
-	INT,//1
-	FLOAT,//2
-	FLOAT_PSEUDO,//3
-	DOUBLE,//4
-	DOUBLE_PSEUDO,//5
-	TYPE_NUM//6
+	/*0*/CHAR,
+	/*1*/INT,
+	/*2*/FLOAT,
+	/*3*/FLOAT_PSEUDO,
+	/*4*/DOUBLE,
+	/*5*/DOUBLE_PSEUDO,
+	/*6*/TYPE_NUM
 };
 
 e_type	getType(const std::string& src)
@@ -47,46 +40,54 @@ e_type	getType(const std::string& src)
 
 void	putChar(char num, bool possible)
 {
+	std::cout	<< std::setw(TITLE_W) << "char: ";
 	if (possible)
 	{
-		if (isprint(num))
-			std::cout	<< C << "'" << num << "'" << std::endl;
+		if (std::isprint(num))
+			std::cout	<< "'" << num << "'";
 		else
-			std::cout	<< C << NODISPLAY << std::endl;
+			std::cout	<< NODISPLAY;
 	}
 	else
-		std::cout	<< C << IMPOSSIBLE << std::endl;
+		std::cout	<< IMPOSSIBLE;
+	std::cout	<< std::endl;
 }
 
 void	putInt(int num, bool possible)
 {
+	std::cout	<< std::setw(TITLE_W) << "int: ";
 	if (possible)
-		std::cout	<< I << num << std::endl;
+		std::cout	<< num;
 	else
-		std::cout	<< I << IMPOSSIBLE << std::endl;
+		std::cout	<< IMPOSSIBLE;
+	std::cout	<< std::endl;
 }
 
 void	putFloat(float num, int precision, bool possible)
 {
+	std::cout	<< std::setw(TITLE_W) << "float: ";
 	if (possible)
 		std::cout	<< std::fixed << std::setprecision(precision)
-					<< F << num << "f" << std::endl;
+					<< num << "f";
 	else
-		std::cout	<< F << IMPOSSIBLE << std::endl;
+		std::cout	<< IMPOSSIBLE;
+	std::cout	<< std::endl;
 }
 
 void	putDouble(double num, int precision, bool possible)
 {
+	std::cout	<< std::setw(TITLE_W) << "double: ";
 	if (possible)
 		std::cout	<< std::fixed << std::setprecision(precision)
-					<< D << num << std::endl;
+					<< num;
 	else
-		std::cout	<< D << IMPOSSIBLE << std::endl;
+		std::cout	<< IMPOSSIBLE;
+	std::cout	<< std::endl;
 }
 
 void	ItoC(int num)
 {
-	if (num < static_cast<int>(CMIN) || static_cast<int>(CMAX) < num)
+	if (num < CMIN || CMAX < num)
 		putChar(num, false);
 	else
 		putChar(static_cast<char>(num), true);
@@ -94,7 +95,7 @@ void	ItoC(int num)
 
 void	FtoC(float num)
 {
-	if (num < static_cast<float>(CMIN) || static_cast<float>(CMAX) < num)
+	if (num < CMIN || CMAX < num)
 		putChar(num, false);
 	else
 		putChar(static_cast<char>(num), true);
@@ -102,7 +103,7 @@ void	FtoC(float num)
 
 void	FtoI(float num)
 {
-	if (num < static_cast<double>(IMIN) || static_cast<double>(IMAX) < num)
+	if (num < IMIN || IMAX < num)
 		putInt(num, false);
 	else
 		putInt(static_cast<int>(num), true);
@@ -110,7 +111,7 @@ void	FtoI(float num)
 
 void	DtoC(double num)
 {
-	if (num < static_cast<double>(CMIN) || static_cast<double>(CMAX) < num)
+	if (num < CMIN || CMAX < num)
 		putChar(num, false);
 	else
 		putChar(static_cast<char>(num), true);
@@ -118,7 +119,7 @@ void	DtoC(double num)
 
 void	DtoI(double num)
 {
-	if (num < static_cast<double>(IMIN) || static_cast<double>(IMAX) < num)
+	if (num < IMIN || IMAX < num)
 		putInt(num, false);
 	else
 		putInt(static_cast<int>(num), true);
@@ -126,7 +127,7 @@ void	DtoI(double num)
 
 void	DtoF(double num, int precision)
 {
-	if (num < -static_cast<double>(FMAX) || static_cast<double>(FMAX) < num)
+	if (num < -FMAX || FMAX < num)
 		putFloat(num, precision, false);
 	else
 		putFloat(static_cast<float>(num), precision, true);
@@ -162,7 +163,9 @@ int main(int argc, char *argv[])
 		else if (type == FLOAT)
 		{
 			float num = std::stof(src);
-			precision = src.size() - src.find('.') - 2;
+			precision = 1;
+			if (src.find('.') != std::string::npos)
+				precision = src.size() - src.find('.') - 2;
 			FtoC(num);
 			FtoI(num);
 			putFloat(num, precision, true);
@@ -188,7 +191,7 @@ int main(int argc, char *argv[])
 		}
 		else if (type == DOUBLE_PSEUDO)
 		{
-			float num = std::stof(src);
+			double num = std::stod(src);
 			precision = 0;
 			putChar(num, false);
 			putInt(num, false);
