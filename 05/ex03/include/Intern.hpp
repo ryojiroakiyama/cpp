@@ -5,19 +5,22 @@
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
 
-class Intern : public Form
+class Form;
+
+class Intern
 {
 	public:
-		Intern( std::string targe = "target less" );
+		Intern();
 		~Intern();
 		Intern( const Intern& original );
-		Intern&	operator= ( const Intern& right );
-		virtual void			action() const;
+		Intern&	operator=( const Intern& right );
+		Form*	makeForm(const std::string&, const std::string&);
 	private:
-		static const int		ToSignGrade;
-		static const int		ToExecuteGrade;
+		Form*	(Intern::*CreateFormFunctions[4])(const std::string&);
+		Form*	CreateNon(const std::string&);
+		Form*	CreateShrubbery(const std::string&);
+		Form*	CreateRobotomy(const std::string&);
+		Form*	CreatePresident(const std::string&);
 };
-
-std::ostream&	operator<<( std::ostream& os, const Intern& right );
 
 #endif

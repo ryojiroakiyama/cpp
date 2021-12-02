@@ -1,13 +1,13 @@
 #include "Intern.hpp"
 
-const int	Intern::ToSignGrade = 25;
-const int	Intern::ToExecuteGrade = 5;
-
-Intern::Intern( std::string target )
-: Form("Intern", ToSignGrade, ToExecuteGrade, target)
+Intern::Intern()
 {
 	std::cout	<< "Intern constructor"
 				<< std::endl;
+	CreateFormFunctions[0] = &Intern::CreateNon;
+	CreateFormFunctions[1] = &Intern::CreateShrubbery;
+	CreateFormFunctions[2] = &Intern::CreateRobotomy;
+	CreateFormFunctions[3] = &Intern::CreatePresident;
 }
 
 Intern::~Intern()
@@ -17,7 +17,6 @@ Intern::~Intern()
 }
 
 Intern::Intern( const Intern& original )
-: Form(original.getName(), ToSignGrade, ToExecuteGrade, original.getTarget())
 {
 	std::cout	<< "Intern copy constructor"
 				<< std::endl;
@@ -31,26 +30,40 @@ Intern&	Intern::operator=( const Intern& right )
 	return *this;
 }
 
-// method
-void	Intern::action() const
+Form*	Intern::CreateNon(const std::string& Target)
 {
-	std::cout	<< "<" << getTarget() << ">"
-				<< " has been pardoned by Zafod Beeblebrox."
+	(void)Target;
+	std::cout	<< "The requested form has no match."
 				<< std::endl;
+	return 0;
 }
 
-// external function
-std::ostream&	operator<<( std::ostream& os, const Intern& right )
+Form*	Intern::CreateShrubbery(const std::string& Target)
+{	
+	std::cout	<< "Intern creates ShrubberyCreationForm."
+				<< std::endl;
+	return new ShrubberyCreationForm(Target);
+}
+
+Form*	Intern::CreateRobotomy(const std::string& Target)
 {
-	os	<< "<" << right.getName() << ">"
-		<< ", is signed or not "
-		<< "<" << right.getisSigned() << ">"
-		<< ", sign grade "
-		<< "<" << right.getSigneGrade() << ">"
-		<< ", execute grade "
-		<< "<" << right.getExecuteGrade() << ">"
-		<< ", target "
-		<< "<" << right.getTarget() << ">"
-		<< ".";
-	return os;
+	std::cout	<< "Intern creates RobotomyRequestForm."
+				<< std::endl;
+	return new RobotomyRequestForm(Target);
+}
+
+Form*	Intern::CreatePresident(const std::string& Target)
+{
+	std::cout	<< "Intern creates PresidentialPardonForm."
+				<< std::endl;
+	return new PresidentialPardonForm(Target);
+}
+
+// method
+Form*	Intern::makeForm(const std::string& FormType, const std::string& Target)
+{
+	int idx =	(FormType == "shrubbery creation") * 1 +
+				(FormType == "robotomy request") * 2 +
+				(FormType == "presidential pardon") * 3;
+	return (this->*CreateFormFunctions[idx])(Target);
 }

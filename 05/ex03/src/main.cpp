@@ -3,6 +3,7 @@
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
+#include "Intern.hpp"
 #include "escape_sequence.hpp"
 
 void	test(Bureaucrat &B, Form *F)
@@ -26,12 +27,17 @@ void	testname(std::string s)
 
 int main( void )
 {
+	Intern	someRandomIntern;
+	Form	*createdForm;
 	testname("ShrubberyCreationForm");
 	try
 	{
 		Bureaucrat B("Ben", 100);
-		ShrubberyCreationForm S("home");
-		test(B, &S);
+		std::cout	<< YELLOW;
+		createdForm = someRandomIntern.makeForm("shrubbery creation", "Bender");
+		std::cout	<< RESET;
+		test(B, createdForm);
+		delete(createdForm);
 	}
 	catch(const std::exception& e)
 	{
@@ -41,8 +47,11 @@ int main( void )
 	try
 	{
 		Bureaucrat B("Ben", 35);
-		RobotomyRequestForm R("home");
-		test(B, &R);
+		std::cout	<< YELLOW;
+		createdForm = someRandomIntern.makeForm("robotomy request", "Bender");
+		std::cout	<< RESET;
+		test(B, createdForm);
+		delete(createdForm);
 	}
 	catch(const std::exception& e)
 	{
@@ -52,8 +61,28 @@ int main( void )
 	try
 	{
 		Bureaucrat B("Ben", 5);
-		PresidentialPardonForm P("home");
-		test(B, &P);
+		std::cout	<< YELLOW;
+		createdForm = someRandomIntern.makeForm("presidential pardon", "Bender");
+		std::cout	<< RESET;
+		test(B, createdForm);
+		delete(createdForm);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+	testname("no match form");
+	try
+	{
+		Bureaucrat B("Ben", 5);
+		std::cout	<< YELLOW;
+		createdForm = someRandomIntern.makeForm("a", "Bender");
+		std::cout	<< RESET;
+		if (createdForm)
+		{
+			test(B, createdForm);
+			delete(createdForm);
+		}
 	}
 	catch(const std::exception& e)
 	{

@@ -11,7 +11,7 @@ class Form
 {
 	public:
 		Form( std::string name = "nameless", int sgrade = 150, int egrade = 1, std::string target = "target less" );
-		~Form();
+		virtual ~Form();
 		Form( const Form& original );
 		Form&				operator= ( const Form& right );
 		const std::string&	getName() const;

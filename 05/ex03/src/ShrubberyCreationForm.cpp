@@ -37,7 +37,7 @@ void	ShrubberyCreationForm::action() const
 {
 	std::ofstream	outstream(getTarget() + std::string("_shrubbery"));
 	if (outstream.fail())
-		throw FailOpenFail();
+		throw FailOpenFile();
 	outstream	<< "                                                         .\n"
 				<< "                                              .         ;  \n"
 				<< "                 .              .              ;%     ;;   \n"
@@ -56,7 +56,7 @@ void	ShrubberyCreationForm::action() const
 				<< "                            ;@%. :@%%  %@@%;   \n";
 }
 
-const char*	ShrubberyCreationForm::FailOpenFail::what() const _NOEXCEPT
+const char*	ShrubberyCreationForm::FailOpenFile::what() const _NOEXCEPT
 {
 	return "fail to open file";
 }

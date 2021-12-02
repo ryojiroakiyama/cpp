@@ -16,7 +16,7 @@ class ShrubberyCreationForm : public Form
 	private:
 		static const int		ToSignGrade;
 		static const int		ToExecuteGrade;
-		class FailOpenFail : public std::exception
+		class FailOpenFile : public std::exception
 		{
 			public:
 				virtual const char *what() const _NOEXCEPT;
