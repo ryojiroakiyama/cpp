@@ -25,9 +25,15 @@ Array<T>::Array(unsigned int n) : _Array(new T[n]()), _Size(n)
 {
 }
 
+//template <typename T>
+//Array<T>::Array(const Array& original) : Array<T>::Array(original.size())
+//{
+//}
+
 template <typename T>
-Array<T>::Array(const Array& original) : Array<T>::Array(original.size())
+Array<T>::Array(const Array& original)
 {
+	*this = original;
 }
 
 template <typename T>

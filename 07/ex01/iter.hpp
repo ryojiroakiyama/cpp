@@ -3,12 +3,28 @@
 
 #include <iostream>
 
-template <typename T, typename U>
-void	iter(T array[], const size_t length, U (*function)(T&))
+/* old style */
+//template <typename T, typename U>
+//void	iter(T array[], const size_t length, U (*function)(T&))
+//{
+//	for (size_t idx = 0; idx < length; idx++)
+//		function(array[idx]);
+//}
+
+template <typename T>
+void	iter(T array[], const size_t length, void (*function)(T &))
 {
 	for (size_t idx = 0; idx < length; idx++)
 		function(array[idx]);
 }
+
+template <typename T>
+void	iter(const T array[], const size_t length, void (*function)(T const &))
+{
+	for (size_t idx = 0; idx < length; idx++)
+		function(array[idx]);
+}
+
 
 template <typename T>
 void		put_element(T element)
