@@ -7,6 +7,10 @@
 #define IMAX static_cast<double>(std::numeric_limits<int>::max())
 #define IMIN static_cast<double>(std::numeric_limits<int>::min())
 #define FMAX static_cast<double>(std::numeric_limits<float>::max())
+#define FNAN std::numeric_limits<float>::quiet_NaN()
+#define FINF std::numeric_limits<float>::infinity()
+#define DNAN std::numeric_limits<double>::quiet_NaN()
+#define DINF std::numeric_limits<double>::infinity()
 
 #define IMPOSSIBLE "impossible"
 #define NODISPLAY "Non displayable"
@@ -181,7 +185,6 @@ int main(int argc, char *argv[])
 		if (argc != 2)
 			throw "invalid arguments number";
 		std::string			src(argv[1]);
-		std::istringstream	iss(src);
 		e_type				type = getType(src);
 		int					precision;
 		if (type == CHAR)
@@ -217,11 +220,11 @@ int main(int argc, char *argv[])
 		{
 			float num = 0;
 			if (type == FLOAT_NAN)
-				num = std::numeric_limits<float>::quiet_NaN();
+				num = FNAN;
 			else if (type == FLOAT_PINF)
-				num = std::numeric_limits<float>::infinity();
+				num = FINF;
 			else if (type == FLOAT_NINF)
-				num = -std::numeric_limits<float>::infinity();
+				num = -FINF;
 			precision = 0;
 			putChar(num, false);
 			putInt(num, false);
@@ -241,11 +244,11 @@ int main(int argc, char *argv[])
 		{
 			double num = 0;
 			if (type == DOUBLE_NAN)
-				num = std::numeric_limits<double>::quiet_NaN();
+				num = DNAN;
 			else if (type == DOUBLE_PINF)
-				num = std::numeric_limits<double>::infinity();
+				num = DINF;
 			else if (type == DOUBLE_NINF)
-				num = -std::numeric_limits<double>::infinity();
+				num = -DINF;
 			precision = 0;
 			putChar(num, false);
 			putInt(num, false);
