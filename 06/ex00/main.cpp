@@ -14,7 +14,7 @@
 
 #define IMPOSSIBLE "impossible"
 #define NODISPLAY "Non displayable"
-#define TITLE_W 8
+#define TITLE_WIDTH 8
 
 enum e_type
 {
@@ -57,7 +57,7 @@ e_type	getType(const std::string& src)
 
 void	putChar(char num, bool possible)
 {
-	std::cout	<< std::setw(TITLE_W) << "char: ";
+	std::cout	<< std::setw(TITLE_WIDTH) << "char: ";
 	if (possible)
 	{
 		if (std::isprint(num))
@@ -72,7 +72,7 @@ void	putChar(char num, bool possible)
 
 void	putInt(int num, bool possible)
 {
-	std::cout	<< std::setw(TITLE_W) << "int: ";
+	std::cout	<< std::setw(TITLE_WIDTH) << "int: ";
 	if (possible)
 		std::cout	<< num;
 	else
@@ -82,7 +82,7 @@ void	putInt(int num, bool possible)
 
 void	putFloat(float num, int precision, bool possible)
 {
-	std::cout	<< std::setw(TITLE_W) << "float: ";
+	std::cout	<< std::setw(TITLE_WIDTH) << "float: ";
 	if (possible)
 		std::cout	<< std::fixed << std::setprecision(precision)
 					<< num << "f";
@@ -93,7 +93,7 @@ void	putFloat(float num, int precision, bool possible)
 
 void	putDouble(double num, int precision, bool possible)
 {
-	std::cout	<< std::setw(TITLE_W) << "double: ";
+	std::cout	<< std::setw(TITLE_WIDTH) << "double: ";
 	if (possible)
 		std::cout	<< std::fixed << std::setprecision(precision)
 					<< num;
@@ -252,7 +252,7 @@ int main(int argc, char *argv[])
 			precision = 0;
 			putChar(num, false);
 			putInt(num, false);
-			putFloat(num, precision, true);
+			putFloat(num, precision, false);
 			putDouble(num, precision, true);
 		}
 	}
