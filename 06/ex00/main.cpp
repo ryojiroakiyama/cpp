@@ -1,4 +1,5 @@
 #include <iostream>
+#include <sstream>
 #include <iomanip>
 
 #define CMAX static_cast<double>(std::numeric_limits<char>::max())
@@ -16,18 +17,30 @@ enum e_type
 	/*0*/CHAR,
 	/*1*/INT,
 	/*2*/FLOAT,
-	/*3*/FLOAT_PSEUDO,
-	/*4*/DOUBLE,
-	/*5*/DOUBLE_PSEUDO,
-	/*6*/TYPE_NUM
+	/*3*/FLOAT_NAN,
+	/*4*/FLOAT_PINF,
+	/*5*/FLOAT_NINF,
+	/*6*/DOUBLE,
+	/*7*/DOUBLE_NAN,
+	/*8*/DOUBLE_PINF,
+	/*9*/DOUBLE_NINF,
+	/*10*/TYPE_NUM
 };
 
 e_type	getType(const std::string& src)
 {
-	if (src == "-inff" || src == "+inff" || src == "nanf")
-		return FLOAT_PSEUDO;
-	else if (src == "-inf" || src == "+inf" || src == "nan")
-		return DOUBLE_PSEUDO;
+	if (src == "nanf")
+		return FLOAT_NAN;
+	else if (src == "+inff")
+		return FLOAT_PINF;
+	else if (src == "-inff")
+		return FLOAT_NINF;
+	else if (src == "nan")
+		return DOUBLE_NAN;
+	else if (src == "+inf")
+		return DOUBLE_PINF;
+	else if (src == "-inf")
+		return DOUBLE_NINF;
 	else if (src.size() == 1 && !isdigit(src.at(0)) && isprint(src.at(0)))
 		return CHAR;
 	else if (src.at(src.size() - 1) == 'f')
@@ -133,15 +146,44 @@ void	DtoF(double num, int precision)
 		putFloat(static_cast<float>(num), precision, true);
 }
 
+int	ft_stoi(const char *src)
+{
+	double get;
+
+	get = std::atof(src);
+	if (get < IMIN || IMAX < get)
+		throw std::exception();
+	return static_cast<int>(get);
+}
+
+float	ft_stof(const char *src)
+{
+	double get;
+
+	get = std::atof(src);
+	if (get < -FMAX || FMAX < get)
+		throw std::exception();
+	return static_cast<float>(get);
+}
+
+double	ft_stod(const char *src)
+{
+	double get;
+
+	get = std::atof(src);
+	return (get);
+}
+
 int main(int argc, char *argv[])
 {
 	try
 	{
 		if (argc != 2)
 			throw "invalid arguments number";
-		std::string	src(argv[1]);
-		e_type		type = getType(src);
-		int			precision;
+		std::string			src(argv[1]);
+		std::istringstream	iss(src);
+		e_type				type = getType(src);
+		int					precision;
 		if (type == CHAR)
 		{
 			int num = static_cast<int>(src.at(0));
@@ -153,7 +195,7 @@ int main(int argc, char *argv[])
 		}
 		else if (type == INT)
 		{
-			int num = std::stoi(src);
+			int num = ft_stoi(argv[1]);
 			precision = 1;
 			ItoC(num);
 			putInt(num, true);
@@ -162,7 +204,7 @@ int main(int argc, char *argv[])
 		}
 		else if (type == FLOAT)
 		{
-			float num = std::stof(src);
+			float num = ft_stof(argv[1]);
 			precision = 1;
 			if (src.find('.') != std::string::npos)
 				precision = src.size() - src.find('.') - 2;
@@ -171,9 +213,15 @@ int main(int argc, char *argv[])
 			putFloat(num, precision, true);
 			putDouble(num, precision, true);
 		}
-		else if (type == FLOAT_PSEUDO)
+		else if (FLOAT_NAN <= type && type <= FLOAT_NINF)
 		{
-			float num = std::stof(src);
+			float num = 0;
+			if (type == FLOAT_NAN)
+				num = std::numeric_limits<float>::quiet_NaN();
+			else if (type == FLOAT_PINF)
+				num = std::numeric_limits<float>::infinity();
+			else if (type == FLOAT_NINF)
+				num = -std::numeric_limits<float>::infinity();
 			precision = 0;
 			putChar(num, false);
 			putInt(num, false);
@@ -182,16 +230,22 @@ int main(int argc, char *argv[])
 		}
 		else if (type == DOUBLE)
 		{
-			double num = std::stod(src);
+			double num = ft_stod(argv[1]);
 			precision = src.size() - src.find('.') - 1;
 			DtoC(num);
 			DtoI(num);
 			DtoF(num, precision);
 			putDouble(num, precision, true);
 		}
-		else if (type == DOUBLE_PSEUDO)
+		else if (DOUBLE_NAN <= type && type <= DOUBLE_NINF)
 		{
-			double num = std::stod(src);
+			double num = 0;
+			if (type == DOUBLE_NAN)
+				num = std::numeric_limits<double>::quiet_NaN();
+			else if (type == DOUBLE_PINF)
+				num = std::numeric_limits<double>::infinity();
+			else if (type == DOUBLE_NINF)
+				num = -std::numeric_limits<double>::infinity();
 			precision = 0;
 			putChar(num, false);
 			putInt(num, false);
