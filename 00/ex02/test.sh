@@ -12,8 +12,7 @@ UNDERLINE="\033[4m"
 BOLD_UNDERLINE="\033[1;4m"
 RESET="\033[0m"
 
-./bank > test.log
 printf "${GREEN}without close${RESET}\n"
-diff -y <(cat 19920104_091532.log | cut -d " " -f 2 | grep -v "close" | sort) <(cat test.log | cut -d " " -f 2 | grep -v "close" | sort)
+diff -y <(cat 19920104_091532.log | cut -d " " -f 2 | grep -v "close") <(./bank | cut -d " " -f 2 | grep -v "close")
 printf "${GREEN}about close${RESET}\n"
-diff -y <(cat 19920104_091532.log | cut -d " " -f 2 | grep "close" | sort) <(cat test.log | cut -d " " -f 2 | grep "close" | sort)
+diff -y <(cat 19920104_091532.log | cut -d " " -f 2 | grep "close") <(./bank | cut -d " " -f 2 | grep "close" | sort)
