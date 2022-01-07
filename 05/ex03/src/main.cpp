@@ -88,4 +88,21 @@ int main( void )
 	{
 		std::cerr << e.what() << std::endl;
 	}
+	testname("empty target");
+	try
+	{
+		Bureaucrat B("Ben", 5);
+		std::cout	<< YELLOW;
+		createdForm = someRandomIntern.makeForm("presidential pardon", "");
+		std::cout	<< RESET;
+		if (createdForm)
+		{
+			test(B, createdForm);
+			delete(createdForm);
+		}
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
 }
