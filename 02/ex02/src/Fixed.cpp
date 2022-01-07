@@ -54,7 +54,7 @@ Fixed	Fixed::operator/ ( const Fixed& right ) const
 		throw std::exception();
 	long	left_num = this->getRawBits();
 	long	right_num = right.getRawBits();
-	result.setRawBits(static_cast<int>((left_num / right_num) * (1 << _FixBit)));
+	result.setRawBits(static_cast<int>((left_num * (1 << _FixBit)) / right_num));
 	return result;
 }
 

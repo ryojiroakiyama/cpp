@@ -18,17 +18,17 @@
 
 enum e_type
 {
-	/*0*/CHAR,
-	/*1*/INT,
-	/*2*/FLOAT,
-	/*3*/FLOAT_NAN,
-	/*4*/FLOAT_PINF,
-	/*5*/FLOAT_NINF,
-	/*6*/DOUBLE,
-	/*7*/DOUBLE_NAN,
-	/*8*/DOUBLE_PINF,
-	/*9*/DOUBLE_NINF,
-	/*10*/TYPE_NUM
+	CHAR,
+	INT,
+	FLOAT,
+	FLOAT_NAN,
+	FLOAT_PINF,
+	FLOAT_NINF,
+	DOUBLE,
+	DOUBLE_NAN,
+	DOUBLE_PINF,
+	DOUBLE_NINF,
+	TYPE_NUM
 };
 
 e_type	getType(const std::string& src)
