@@ -11,7 +11,7 @@ typename T::const_iterator	easyfind(const T& x, const int target)
 		if (*it == target)
 			return it;
     }
-	return itEnd;
+	return itEnd;// exeptionかリターンか
 }
 
 #endif
