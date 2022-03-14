@@ -10,7 +10,7 @@ static void	ColorMessage(const std::string color, const std::string message)
 }
 
 template <typename T>
-void	test(const T& container, const int target)
+void	exec(const T& container, const int target)
 {
 	try
 	{
@@ -24,6 +24,15 @@ void	test(const T& container, const int target)
 	{
 		ColorMessage(MAGENTA, e.what());
 	}
+}
+
+template <typename T>
+void	test(const int elementSize, const int target)
+{
+	T container;
+	for (int i = 0; i < elementSize; i++)
+		container.insert(container.begin(), i);
+	exec(container, target);
 }
 
 #endif

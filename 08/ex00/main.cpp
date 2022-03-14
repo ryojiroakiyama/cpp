@@ -5,55 +5,45 @@
 #include <list>
 #include <vector>
 #include <set>
-#include <algorithm>
 
-void putInt(int i)
+void putElement(const int elementSize)
 {
-    std::cout << i << ", ";
+    for (int i = 0; i < elementSize; i++)
+        std::cout << i << ", ";
+    std::cout << std::endl;
 }
 
 int main()
 {
     std::cout << CLEAR;
 
-    // make contents
-    const int contentSize = 10;
-    int content[contentSize];
-    for (int i = 0; i < contentSize; i++) {
-        content[i] = i;
-    }
-
     // generate test sources
     std::srand(time(0));
-    const int maxContentRange = contentSize;
-    const int contentRange = std::rand() % (maxContentRange + 1);
-    const int maxSearchNum = contentSize * 2;
-    const int searchNum = std::rand() % (maxSearchNum + 1);
+    const int elementRange = 10;
+    const int elementSize = std::rand() % elementRange;
+    const int targetRange = ((elementSize == 0)? 1 : elementSize * 2);
+    const int target = std::rand() % targetRange;
 
     // print test message
-    std::cout   << std::setw(10) << "content:";
-    std::for_each(content, content + contentRange, putInt);
-    std::cout   << std::endl;
-    std::cout   << std::setw(10) << "searchNum:" << searchNum << std::endl;
+    std::cout   << std::setw(10) << "element:";
+    putElement(elementSize);
+    std::cout   << std::setw(10) << "target:" << target << std::endl;
 
     // test
     std::cout << std::endl;
     {
         std::cout << "vector" << std::endl;
         typedef std::vector<int> IntVector;
-        IntVector vct(content, content + contentRange);
-        test(vct, searchNum);
+        test<IntVector>(elementSize,target);
     }
     {
         std::cout << "list" << std::endl;
         typedef std::list<int> IntList;
-        IntList lst(content, content + contentRange);
-        test(lst, searchNum);
+        test<IntList>(elementSize,target);
     }
     {
         std::cout << "set" << std::endl;
         typedef std::set<int> IntSet;
-        IntSet set(content, content + contentRange);
-	    test(set, searchNum);
+	    test<IntSet>(elementSize,target);
     }
 }
