@@ -17,10 +17,10 @@ template <typename T>
 typename T::const_iterator	easyfind(const T& container, const int target)
 {
 	typename T::const_iterator result = std::find(container.begin(), container.end(), target);
-	if (*result == target) {
-		return result;
-	} else {
+	if (result == container.end()) {
 		throw NotFound();
+	} else {
+		return result;
 	}
 }
 

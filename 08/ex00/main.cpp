@@ -5,6 +5,12 @@
 #include <list>
 #include <vector>
 #include <set>
+#include <algorithm>
+
+void putInt(int i)
+{
+    std::cout << i << ", ";
+}
 
 int main()
 {
@@ -17,32 +23,37 @@ int main()
         content[i] = i;
     }
 
-    // generate test num
+    // generate test sources
     std::srand(time(0));
-    int randRange = contentSize * 2;
-    int target = std::rand() % (randRange);
+    const int maxContentRange = contentSize;
+    const int contentRange = std::rand() % (maxContentRange + 1);
+    const int maxSearchNum = contentSize * 2;
+    const int searchNum = std::rand() % (maxSearchNum + 1);
 
     // print test message
-    std::cout   << std::setw(8) << "content:" << "0 ~ " << contentSize << std::endl
-                << std::setw(8) << "target:" << target << std::endl;
+    std::cout   << std::setw(10) << "content:";
+    std::for_each(content, content + contentRange, putInt);
+    std::cout   << std::endl;
+    std::cout   << std::setw(10) << "searchNum:" << searchNum << std::endl;
 
+    // test
     std::cout << std::endl;
     {
         std::cout << "vector" << std::endl;
         typedef std::vector<int> IntVector;
-        IntVector vct(content, content + contentSize);
-	    test(vct, target);
+        IntVector vct(content, content + contentRange);
+        test(vct, searchNum);
     }
     {
         std::cout << "list" << std::endl;
         typedef std::list<int> IntList;
-        IntList lst(content, content + contentSize);
-	    test(lst, target);
+        IntList lst(content, content + contentRange);
+        test(lst, searchNum);
     }
     {
         std::cout << "set" << std::endl;
         typedef std::set<int> IntSet;
-        IntSet set(content, content + contentSize);
-	    test(set, target);
+        IntSet set(content, content + contentRange);
+	    test(set, searchNum);
     }
 }
