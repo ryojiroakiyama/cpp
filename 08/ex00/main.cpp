@@ -1,33 +1,48 @@
 #include "easyfind.hpp"
-#include "escape_sequence.hpp"
-#include <iostream>
+#include "test.hpp"
+#include <iomanip>
+#include <ctime>
 #include <list>
 #include <vector>
-
-void	ColorMessage(const std::string color, const std::string message)
-{
-	std::cout << color << message << RESET << std::endl;
-}
-
-template <typename T>
-void	test(const T& container, const int target)
-{
-    if (*easyfind(container, target) == target)
-        ColorMessage(GREEN, "ok");
-	else
-		ColorMessage(RED, "no");
-}
+#include <set>
 
 int main()
 {
-    typedef std::vector<int> IntVector;
-    typedef std::list<int> IntList;
+    std::cout << CLEAR;
 
-    const int table[] = {0, 1, 2, 3, 4};
+    // make contents
+    const int contentSize = 10;
+    int content[contentSize];
+    for (int i = 0; i < contentSize; i++) {
+        content[i] = i;
+    }
 
-    IntVector vct(table, table + 5);
-    IntList lst(table, table + 5);
+    // generate test num
+    std::srand(time(0));
+    int randRange = contentSize * 2;
+    int target = std::rand() % (randRange);
 
-	test(vct, 4);
-	test(lst, 3);
+    // print test message
+    std::cout   << std::setw(8) << "content:" << "0 ~ " << contentSize << std::endl
+                << std::setw(8) << "target:" << target << std::endl;
+
+    std::cout << std::endl;
+    {
+        std::cout << "vector" << std::endl;
+        typedef std::vector<int> IntVector;
+        IntVector vct(content, content + contentSize);
+	    test(vct, target);
+    }
+    {
+        std::cout << "list" << std::endl;
+        typedef std::list<int> IntList;
+        IntList lst(content, content + contentSize);
+	    test(lst, target);
+    }
+    {
+        std::cout << "set" << std::endl;
+        typedef std::set<int> IntSet;
+        IntSet set(content, content + contentSize);
+	    test(set, target);
+    }
 }
