@@ -4,13 +4,18 @@
 #include <list>
 #include <vector>
 
+void	ColorMessage(const std::string color, const std::string message)
+{
+	std::cout << color << message << RESET << std::endl;
+}
+
 template <typename T>
 void	test(const T& container, const int target)
 {
     if (*easyfind(container, target) == target)
-        ColorPrint(GREEN, "ok");
+        ColorMessage(GREEN, "ok");
 	else
-		ColorPrint(RED, "no");
+		ColorMessage(RED, "no");
 }
 
 int main()

@@ -14,11 +14,4 @@
 #define BOLD_UNDERLINE	"\033[1;4m"
 #define RESET			"\033[0m"
 
-#include <iostream>
-
-void	ColorPrint(const std::string Color, const std::string PrintMessage)
-{
-	std::cout << Color << PrintMessage << RESET << std::endl;
-}
-
 #endif
