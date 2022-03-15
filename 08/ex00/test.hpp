@@ -27,10 +27,10 @@ static void	Exec(const T& container, const int target)
 }
 
 template <typename T>
-void	Test(const int elementSize, const int target)
+void	Test(const int size_content, const int target)
 {
 	T container;
-	for (int i = 0; i < elementSize; i++)
+	for (int i = 0; i < size_content; i++)
 		container.insert(container.begin(), i);
 	Exec(container, target);
 }
