@@ -2,8 +2,9 @@
 #include "test.hpp"
 #include <iomanip>
 #include <ctime>
-#include <list>
 #include <vector>
+#include <list>
+#include <deque>
 #include <set>
 
 void putElement(const int elementSize)
@@ -25,9 +26,9 @@ int main()
     const int target = std::rand() % targetRange;
 
     // print test message
-    std::cout   << std::setw(10) << "element:";
+    std::cout   << std::setw(8) << "element:";
     putElement(elementSize);
-    std::cout   << std::setw(10) << "target:" << target << std::endl;
+    std::cout   << std::setw(8) << "target:" << target << std::endl;
 
     // test
     std::cout << std::endl;
@@ -42,8 +43,18 @@ int main()
         test<IntList>(elementSize,target);
     }
     {
+        std::cout << "deque" << std::endl;
+        typedef std::deque<int> IntDeque;
+	    test<IntDeque>(elementSize,target);
+    }
+    {
         std::cout << "set" << std::endl;
         typedef std::set<int> IntSet;
 	    test<IntSet>(elementSize,target);
+    }
+    {
+        std::cout << "multiset" << std::endl;
+        typedef std::multiset<int> IntMulSet;
+	    test<IntMulSet>(elementSize,target);
     }
 }
