@@ -3,13 +3,13 @@
 
 int main()
 {
-	span s(3);
+	span s(10);
 	try
 	{
 		s.addNumber(1);
-		s.addNumber(2);
-		std::cout << std::boolalpha << s.addNumber(2) << std::endl;
-		s.addNumber(3);
+		std::cout << std::boolalpha << s.addNumber(1) << std::endl;
+		s.addNumber(55);
+		s.addNumber(99);
 		s.addNumber(1000);
 	}
 	catch(const span::OutRange& e)

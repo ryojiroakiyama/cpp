@@ -44,11 +44,11 @@ unsigned int span::shortestSpan() const
 	if (this->container_.size() < 2)
 		throw span::NoSpan();
 
-	unsigned int	min_span = span::longestSpan();
-	unsigned int	prev_value = *(this->container_.begin());
-	Iterator 		itBegin = ++(this->container_.begin());
+	Iterator 		itBegin = this->container_.begin();
 	Iterator		itEnd = this->container_.end();
-	for (Iterator it = itBegin; it != itEnd; it++)
+	unsigned int	min_span = span::longestSpan();
+	unsigned int	prev_value = *(itBegin);
+	for (Iterator it = ++itBegin; it != itEnd; it++)
 	{
 		unsigned int span = *it - prev_value;
 		if (span < min_span)
