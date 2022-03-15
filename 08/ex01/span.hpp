@@ -19,6 +19,8 @@ class span
 		unsigned int shortestSpan() const;
 		unsigned int longestSpan() const;
 		bool addNumber(const int num);
+
+		unsigned int getCapacity() const;
 		ContainerType::const_iterator getIterBegin() const;
 		ContainerType::const_iterator getIterEnd() const;
 
@@ -35,11 +37,10 @@ class span
 				}
 		};
 
-
 	private:
 		span();
 		ContainerType container_;
-		unsigned int content_size_;
+		unsigned int capacity_;
 };
 
 std::ostream &operator<<(std::ostream &os, span const &span);
