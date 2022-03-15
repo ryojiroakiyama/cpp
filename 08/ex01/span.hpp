@@ -6,19 +6,18 @@
 
 #define _NOEXCEPT throw()
 
-typedef std::set<int> IntSet;
 
 class span
 {
 public:
+	typedef std::set<int> ContainerType;
 	span(const unsigned int content_size);
 	~span();
 	span(span const &other);
 	span &operator=(span const &other);
-	//std::string LineUpContent() const;
-	void addNumber(const int num);
-	IntSet::const_iterator getIterBegin() const;
-	IntSet::const_iterator getIterEnd() const;
+	bool addNumber(const int num);
+	ContainerType::const_iterator getIterBegin() const;
+	ContainerType::const_iterator getIterEnd() const;
 	class OutRange : public std::exception
 	{
 		public:
@@ -29,7 +28,7 @@ public:
 
 private:
 	span();
-	IntSet container_;
+	ContainerType container_;
 	unsigned int content_size_;
 };
 
