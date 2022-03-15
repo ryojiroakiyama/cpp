@@ -6,7 +6,7 @@
 
 const int w = 20;
 
-static void TestaddNumber(span& s, const unsigned int addNum)
+void ExceptionAddNumber(span& s, const unsigned int addNum)
 {
 	std::cout << std::setw(w) << "Test addNumber: ";
 	try
@@ -20,7 +20,7 @@ static void TestaddNumber(span& s, const unsigned int addNum)
 	}
 }
 
-static void TestshortestSpan(span& s)
+void ExceptionShortestSpan(span& s)
 {
 	std::cout << std::setw(w) << "Test shortestSpan: ";
 	try
@@ -34,7 +34,7 @@ static void TestshortestSpan(span& s)
 	}
 }
 
-static void TestlongestSpan(span& s)
+void ExeptionLongestSpan(span& s)
 {
 	std::cout << std::setw(w) << "Test longestSpan: ";
 	try
@@ -48,22 +48,22 @@ static void TestlongestSpan(span& s)
 	}
 }
 
-void ErrorTest()
+void TestError()
 {
 	{
 		span s(0);
 		SpanInfo(s);
-		TestaddNumber(s, 4);
-		TestshortestSpan(s);
-		TestlongestSpan(s);
+		ExceptionAddNumber(s, 4);
+		ExceptionShortestSpan(s);
+		ExeptionLongestSpan(s);
 	}
 	{
 		span s(1);
 		s.addNumber(1);
 		SpanInfo(s);
-		TestaddNumber(s, 2);
-		TestshortestSpan(s);
-		TestlongestSpan(s);
+		ExceptionAddNumber(s, 2);
+		ExceptionShortestSpan(s);
+		ExeptionLongestSpan(s);
 	}
 	{
 		span s(5);
@@ -73,6 +73,6 @@ void ErrorTest()
 		s.addNumber(4);
 		s.addNumber(5);
 		SpanInfo(s);
-		TestaddNumber(s, 6);
+		ExceptionAddNumber(s, 6);
 	}
 }

@@ -3,7 +3,10 @@
 
 #include "span.hpp"
 
+void TestError();
+void TestNormal();
 void SpanInfo(span& s);
-void ErrorTest();
-
+void ExceptionAddNumber(span& s, const unsigned int addNum);
+void ExceptionShortestSpan(span& s);
+void ExeptionLongestSpan(span& s);
 #endif
