@@ -8,7 +8,7 @@ span::~span()
 {
 }
 
-span::span(span const &other) : span::span(other.content_size_)
+span::span(span const &other) : content_size_(other.content_size_)
 {
 	*this = other;
 }
