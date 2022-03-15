@@ -26,35 +26,25 @@ int main()
     const int target = std::rand() % range_target;
 
     // print test message
-    std::cout   << std::setw(8) << "elem:";
+    std::cout   << std::setw(10) << "content:";
     PutContent(size_content);
-    std::cout   << std::setw(8) << "target:" << target << std::endl;
+    std::cout   << std::setw(10) << "target:" << target << std::endl;
 
     // test
     std::cout << std::endl;
-    {
-        std::cout << "vector" << std::endl;
-        typedef std::vector<int> IntVector;
-        Test<IntVector>(size_content,target);
-    }
-    {
-        std::cout << "list" << std::endl;
-        typedef std::list<int> IntList;
-        Test<IntList>(size_content,target);
-    }
-    {
-        std::cout << "deque" << std::endl;
-        typedef std::deque<int> IntDeque;
-	    Test<IntDeque>(size_content,target);
-    }
-    {
-        std::cout << "set" << std::endl;
-        typedef std::set<int> IntSet;
-	    Test<IntSet>(size_content,target);
-    }
-    {
-        std::cout << "multiset" << std::endl;
-        typedef std::multiset<int> IntMulSet;
-	    Test<IntMulSet>(size_content,target);
-    }
+
+    std::cout << "vector" << std::endl;
+    Test<std::vector<int> >(size_content,target);
+
+    std::cout << "list" << std::endl;
+    Test<std::list<int> >(size_content,target);
+
+    std::cout << "deque" << std::endl;
+    Test<std::deque<int> >(size_content,target);
+
+    std::cout << "set" << std::endl;
+    Test<std::set<int> >(size_content,target);
+
+    std::cout << "multiset" << std::endl;
+    Test<std::multiset<int> >(size_content,target);
 }
