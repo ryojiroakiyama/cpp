@@ -10,7 +10,7 @@ static void	ColorMessage(const std::string color, const std::string message)
 }
 
 template <typename T>
-void	exec(const T& container, const int target)
+static void	Exec(const T& container, const int target)
 {
 	try
 	{
@@ -27,12 +27,12 @@ void	exec(const T& container, const int target)
 }
 
 template <typename T>
-void	test(const int elementSize, const int target)
+void	Test(const int elementSize, const int target)
 {
 	T container;
 	for (int i = 0; i < elementSize; i++)
 		container.insert(container.begin(), i);
-	exec(container, target);
+	Exec(container, target);
 }
 
 #endif

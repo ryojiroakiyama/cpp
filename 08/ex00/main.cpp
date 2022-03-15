@@ -7,7 +7,7 @@
 #include <deque>
 #include <set>
 
-void putElement(const int elementSize)
+static void PutElement(const int elementSize)
 {
     for (int i = 0; i < elementSize; i++)
         std::cout << i << ", ";
@@ -27,7 +27,7 @@ int main()
 
     // print test message
     std::cout   << std::setw(8) << "element:";
-    putElement(elementSize);
+    PutElement(elementSize);
     std::cout   << std::setw(8) << "target:" << target << std::endl;
 
     // test
@@ -35,26 +35,26 @@ int main()
     {
         std::cout << "vector" << std::endl;
         typedef std::vector<int> IntVector;
-        test<IntVector>(elementSize,target);
+        Test<IntVector>(elementSize,target);
     }
     {
         std::cout << "list" << std::endl;
         typedef std::list<int> IntList;
-        test<IntList>(elementSize,target);
+        Test<IntList>(elementSize,target);
     }
     {
         std::cout << "deque" << std::endl;
         typedef std::deque<int> IntDeque;
-	    test<IntDeque>(elementSize,target);
+	    Test<IntDeque>(elementSize,target);
     }
     {
         std::cout << "set" << std::endl;
         typedef std::set<int> IntSet;
-	    test<IntSet>(elementSize,target);
+	    Test<IntSet>(elementSize,target);
     }
     {
         std::cout << "multiset" << std::endl;
         typedef std::multiset<int> IntMulSet;
-	    test<IntMulSet>(elementSize,target);
+	    Test<IntMulSet>(elementSize,target);
     }
 }
