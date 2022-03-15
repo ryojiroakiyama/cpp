@@ -17,5 +17,6 @@ int main()
 		std::cerr << e.what() << std::endl;
 	}
 	std::cout << s << std::endl;
-	
+	std::cout << s.shortestSpan() << std::endl;
+	std::cout << s.longestSpan() << std::endl;
 }
