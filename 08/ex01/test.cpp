@@ -6,8 +6,7 @@
 
 void SpanInfo(span& s)
 {
-	std::cout		<< std::endl
-					<< "span  "
+	std::cout		<< "span  "
 					<< "capacity: " << s.getCapacity() << "  "
 					<< "content: ";
 	if (20 < s.getCapacity())
@@ -25,7 +24,7 @@ void SpanInfo(span& s)
 	std::cout		<< std::endl;
 }
 
-void TestAll(span& s, const unsigned int addNum)
+void TestAll(span& s, const int addNum)
 {
 	TestAddNumber(s, addNum);
 	TestShortestSpan(s);
@@ -34,7 +33,7 @@ void TestAll(span& s, const unsigned int addNum)
 
 const int w = 15;
 
-void TestAddNumber(span& s, const unsigned int addNum)
+void TestAddNumber(span& s, const int addNum)
 {
 	std::cout << std::setw(w) << "addNumber: ";
 	try
@@ -53,34 +52,35 @@ void TestAddNumber(span& s, const unsigned int addNum)
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << MAGENTA << e.what() << RESET << std::endl;
+		std::cerr		<< MAGENTA << e.what() << RESET
+						<< " (" << addNum << " tried)" << std::endl;
 	}
 }
 
 void TestShortestSpan(span& s)
 {
-	std::cout << std::setw(w) << "shortestSpan: ";
+	std::cout		<< std::setw(w) << "shortestSpan: ";
 	try
 	{
 		const unsigned int result = s.shortestSpan();
-		std::cout << GREEN << result << RESET << std::endl;
+		std::cout	<< GREEN << result << RESET << std::endl;
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << MAGENTA << e.what() << RESET << std::endl;
+		std::cerr	<< MAGENTA << e.what() << RESET << std::endl;
 	}
 }
 
 void TestLongestSpan(span& s)
 {
-	std::cout << std::setw(w) << "longestSpan: ";
+	std::cout		<< std::setw(w) << "longestSpan: ";
 	try
 	{
 		const unsigned int result = s.longestSpan();
-		std::cout << GREEN << result << RESET << std::endl;
+		std::cout	<< GREEN << result << RESET << std::endl;
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << MAGENTA << e.what() << RESET << std::endl;
+		std::cerr	<< MAGENTA << e.what() << RESET << std::endl;
 	}
 }
