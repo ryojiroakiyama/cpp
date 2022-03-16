@@ -12,7 +12,11 @@ void TestAddNumber(span& s, const unsigned int addNum)
 	try
 	{
 		bool result = s.addNumber(addNum);
-		std::cout << GREEN << std::boolalpha << result << RESET << std::endl;
+		std::cout	<< GREEN
+					<< std::boolalpha << result
+					<< RESET
+					<< " (" << addNum << " added)"
+					<< std::endl;
 	}
 	catch(const std::exception& e)
 	{
