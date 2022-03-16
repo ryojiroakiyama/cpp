@@ -9,8 +9,7 @@ DPSDIR	= ./dps
 
 SRCNAME	= 	main.cpp \
 			span.cpp \
-			test.cpp \
-			test_error.cpp
+			test.cpp
 SRCS	= $(addprefix $(SRCDIR)/, $(SRCNAME))
 OBJS	= $(addprefix $(OBJDIR)/, $(notdir $(SRCS:.cpp=.o)))
 DPS		= $(addprefix $(DPSDIR)/, $(notdir $(SRCS:.cpp=.d)))
