@@ -14,6 +14,17 @@ class NotFound : public std::exception
 };
 
 template <typename T>
+typename T::iterator		easyfind(T& container, const int target)
+{
+	typename T::iterator result = std::find(container.begin(), container.end(), target);
+	if (result == container.end()) {
+		throw NotFound();
+	} else {
+		return result;
+	}
+}
+
+template <typename T>
 typename T::const_iterator	easyfind(const T& container, const int target)
 {
 	typename T::const_iterator result = std::find(container.begin(), container.end(), target);
