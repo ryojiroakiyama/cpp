@@ -2,7 +2,7 @@
 #include <iostream>
 #include <ctime>
 
-int randomInt()
+int RandomInt()
 {
 	static unsigned int seed = time(0);
 
@@ -42,7 +42,7 @@ int main()
 		span s(cap);
 		SpanInfo(s);
 		for (unsigned int i = 0; i < cap; i++)
-			TestAddNumber(s, randomInt() % addNumRange);
+			TestAddNumber(s, RandomInt() % addNumRange);
 		SpanInfo(s);
 		TestAll(s, 5);
 	}
