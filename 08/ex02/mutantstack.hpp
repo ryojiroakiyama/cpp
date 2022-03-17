@@ -4,35 +4,47 @@
 #include <stack>
 
 template <typename T>
-class mutantstack : public std::stack<T>
+class MutantStack : public std::stack<T>
 {
 	public:
-		mutantstack();
-		~mutantstack();
-		mutantstack(mutantstack const &other);
-		mutantstack &operator=(mutantstack const &other);
+		typedef typename std::stack<T>::container_type::iterator Iter;
+		typedef typename std::stack<T>::container_type::const_iterator ConstIter;
+		MutantStack() {}
+		~MutantStack() {}
+		MutantStack(MutantStack const &other);
+		MutantStack &operator=(MutantStack const &other);
+		Iter begin();
+		ConstIter begin() const;
+
 };
 
 template <typename T>
-mutantstack<T>::mutantstack() {}
-
-template <typename T>
-mutantstack<T>::~mutantstack() {}
-
-template <typename T>
-mutantstack<T>::mutantstack(mutantstack<T> const &other)
+MutantStack<T>::MutantStack(MutantStack<T> const &other)
 {
 	*this = other;
 }
 
+#include <iostream>
 template <typename T>
-mutantstack<T> &mutantstack<T>::operator=(mutantstack<T> const &other)
+MutantStack<T> &MutantStack<T>::operator=(MutantStack<T> const &other)
 {
 	if (this != &other)
 	{
 		this->c = other.c; /* c: container */
 	}
 	return *this;
+}
+
+template <typename T>
+typename MutantStack<T>::Iter MutantStack<T>::begin()
+{
+	return this->c.begin();
+}
+
+template <typename T>
+typename MutantStack<T>::ConstIter MutantStack<T>::begin() const
+{
+	return this->c.begin();
 }
 
 #endif /* MUTANTSTACK_HPP */
