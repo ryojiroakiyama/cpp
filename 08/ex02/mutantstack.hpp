@@ -30,7 +30,7 @@ mutantstack<T> &mutantstack<T>::operator=(mutantstack<T> const &other)
 {
 	if (this != &other)
 	{
-		// mutant's specific copy treatment
+		this->c = other.c; /* c: container */
 	}
 	return *this;
 }
