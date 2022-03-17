@@ -2,15 +2,15 @@
 #include <iostream>
 
 // construct and destruct
-span::span(const unsigned int content_size) : capacity_(content_size) {}
-span::~span() {}
+Span::Span(const unsigned int content_size) : capacity_(content_size) {}
+Span::~Span() {}
 
-span::span(span const &other) : capacity_(other.capacity_)
+Span::Span(Span const &other) : capacity_(other.capacity_)
 {
 	*this = other;
 }
 
-span &span::operator=(span const &other)
+Span &Span::operator=(Span const &other)
 {
 	if (this != &other)
 	{
@@ -22,9 +22,9 @@ span &span::operator=(span const &other)
 
 
 // methods
-bool span::addNumber(const int num)
+bool Span::addNumber(const int num)
 {
-	typedef std::pair<span::ContainerType::iterator, bool> InsertResultType;
+	typedef std::pair<Span::ContainerType::iterator, bool> InsertResultType;
 
 	if (this->container_.size() < this->capacity_)
 	{
@@ -33,66 +33,66 @@ bool span::addNumber(const int num)
 	}
 	else
 	{
-		throw span::OutRange();
+		throw Span::OutRange();
 	}
 }
 
-unsigned int span::shortestSpan() const
+unsigned int Span::shortestSpan() const
 {
-	typedef span::ContainerType::const_iterator Iterator;
+	typedef Span::ContainerType::const_iterator Iterator;
 
 	if (this->container_.size() < 2)
-		throw span::NoSpan();
+		throw Span::NoSpan();
 
 	Iterator 		itBegin = this->container_.begin();
 	Iterator		itEnd = this->container_.end();
-	unsigned int	min_span = span::longestSpan();
+	unsigned int	min_span = Span::longestSpan();
 	unsigned int	prev_value = *(itBegin);
 	for (Iterator it = ++itBegin; it != itEnd; it++)
 	{
-		unsigned int span = *it - prev_value;
-		if (span < min_span)
-			min_span = span;
+		unsigned int Span = *it - prev_value;
+		if (Span < min_span)
+			min_span = Span;
 		prev_value = *it;
 	}
 	return min_span;
 }
 
-unsigned int span::longestSpan() const
+unsigned int Span::longestSpan() const
 {
 	if (this->container_.size() < 2)
-		throw span::NoSpan();
+		throw Span::NoSpan();
 
 	unsigned int min_num = *(this->container_.begin());
 	unsigned int max_num = *(--(this->container_.end()));
 	return max_num - min_num;
 }
 
-unsigned int span::getCapacity() const
+unsigned int Span::getCapacity() const
 {
 	return this->capacity_;
 }
 
-span::ContainerType::const_iterator span::getIterBegin() const
+Span::ContainerType::const_iterator Span::getIterBegin() const
 {
 	return this->container_.begin();
 }
 
-span::ContainerType::const_iterator span::getIterEnd() const
+Span::ContainerType::const_iterator Span::getIterEnd() const
 {
 	return this->container_.end();
 }
 
 
 // funcs
-std::ostream &operator<<(std::ostream &os, span const &span)
+std::ostream &operator<<(std::ostream &os, Span const &Span)
 {
-	typedef span::ContainerType::const_iterator Iterator;
+	typedef Span::ContainerType::const_iterator Iterator;
 
 	os << "[";
 
-	Iterator itEnd = span.getIterEnd();
-	for (Iterator it = span.getIterBegin(); it != itEnd; it++)
+	Iterator itEnd = Span.getIterEnd();
+	for (Iterator it = Span.getIterBegin(); it != itEnd; it++)
 		os << " " << *it;
 
 	os << " ]";

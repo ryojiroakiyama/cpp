@@ -7,14 +7,14 @@
 #define _NOEXCEPT throw()
 
 
-class span
+class Span
 {
 	public:
 		typedef std::set<int> ContainerType;
-		span(const unsigned int content_size);
-		~span();
-		span(span const &other);
-		span &operator=(span const &other);
+		Span(const unsigned int content_size);
+		~Span();
+		Span(Span const &other);
+		Span &operator=(Span const &other);
 
 		unsigned int shortestSpan() const;
 		unsigned int longestSpan() const;
@@ -38,11 +38,11 @@ class span
 		};
 
 	private:
-		span();
+		Span();
 		ContainerType container_;
 		unsigned int capacity_;
 };
 
-std::ostream &operator<<(std::ostream &os, span const &span);
+std::ostream &operator<<(std::ostream &os, Span const &Span);
 
 #endif /* SPAN_HPP */

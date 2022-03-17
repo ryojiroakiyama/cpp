@@ -4,9 +4,9 @@
 #include <iostream>
 #include <iomanip>
 
-void SpanInfo(span& s)
+void SpanInfo(Span& s)
 {
-	std::cout		<< "span  "
+	std::cout		<< "Span  "
 					<< "capacity: " << s.getCapacity() << "  "
 					<< "content: ";
 	if (20 < s.getCapacity())
@@ -24,7 +24,7 @@ void SpanInfo(span& s)
 	std::cout		<< std::endl;
 }
 
-void TestAll(span& s, const int addNum)
+void TestAll(Span& s, const int addNum)
 {
 	TestAddNumber(s, addNum);
 	TestShortestSpan(s);
@@ -33,7 +33,7 @@ void TestAll(span& s, const int addNum)
 
 const int w = 15;
 
-void TestAddNumber(span& s, const int addNum)
+void TestAddNumber(Span& s, const int addNum)
 {
 	std::cout << std::setw(w) << "addNumber: ";
 	try
@@ -57,7 +57,7 @@ void TestAddNumber(span& s, const int addNum)
 	}
 }
 
-void TestShortestSpan(span& s)
+void TestShortestSpan(Span& s)
 {
 	std::cout		<< std::setw(w) << "shortestSpan: ";
 	try
@@ -71,7 +71,7 @@ void TestShortestSpan(span& s)
 	}
 }
 
-void TestLongestSpan(span& s)
+void TestLongestSpan(Span& s)
 {
 	std::cout		<< std::setw(w) << "longestSpan: ";
 	try

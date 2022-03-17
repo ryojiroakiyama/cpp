@@ -16,20 +16,20 @@ int main()
 {
 	{
 		std::cout << std::endl;
-		span s(0);
+		Span s(0);
 		SpanInfo(s);
 		TestAll(s, 0);
 	}
 	{
 		std::cout << std::endl;
-		span s(1);
+		Span s(1);
 		s.addNumber(1);
 		SpanInfo(s);
 		TestAll(s, 2);
 	}
 	{
 		std::cout << std::endl;
-		span s(2);
+		Span s(2);
 		s.addNumber(1);
 		SpanInfo(s);
 		TestAddNumber(s, 1);
@@ -39,7 +39,7 @@ int main()
 		std::cout << std::endl;
 		const unsigned int	cap = 10;
 		const int			addNumRange = 1000;
-		span s(cap);
+		Span s(cap);
 		SpanInfo(s);
 		for (unsigned int i = 0; i < cap; i++)
 			TestAddNumber(s, RandomInt() % addNumRange);
@@ -49,7 +49,7 @@ int main()
 	{
 		std::cout << std::endl;
 		const unsigned int cap = 100000;
-		span s(cap);
+		Span s(cap);
 		for (unsigned int i = 0; i < cap; i++)
 			s.addNumber(i);
 		SpanInfo(s);
