@@ -3,6 +3,11 @@
 #include <stack>
 #include <list>
 
+template <typename T>
+void OutAll(std::stack<T> s)
+{
+}
+
 int main()
 {
 	{
