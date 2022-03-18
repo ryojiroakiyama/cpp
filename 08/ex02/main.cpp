@@ -48,10 +48,23 @@ int main()
 		ReverseIteratorTest(mstack);
 		OutAll(mstack);
 
-		/* copy stack */
+		/* copy Stack */
 		std::cout << std::endl;
 		ColorMessage(GREEN, "CopyStack");
 		std::stack<int> copystack(mstack);
 		OutAll(copystack);
+
+		{
+			/* copy & const MutantStack */
+			std::cout << std::endl;
+			ColorMessage(GREEN, "CopyConstMutantStack");
+			MutantStack<int> mstack;
+			mstack.push(1);
+			mstack.push(2);
+			mstack.push(3);
+			const MutantStack<int> ccmstack(mstack);
+			IteratorTest(ccmstack);
+			ReverseIteratorTest(ccmstack);
+		}
 	}
 }

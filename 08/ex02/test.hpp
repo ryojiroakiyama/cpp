@@ -2,9 +2,18 @@
 #include <iostream>
 #include <iomanip>
 
-static void Title(std::string message)
+static void Title(std::string title)
 {
-	std::cout << "----" << message << "----" << std::endl;
+	std::cout << "----" << title << "----" << std::endl;
+}
+
+static void EndTitle(std::string its_title)
+{
+	std::cout		<< "----";
+	for (size_t i = 0; i < its_title.size(); i++)
+		std::cout	<< "-";
+	std::cout		<< "----"
+					<< std::endl;
 }
 
 template <typename T>
@@ -16,7 +25,7 @@ void OutAll(std::stack<T> s)
 		std::cout << s.top() << std::endl;
 		s.pop();
 	}
-	Title("OutAll");
+	EndTitle("OutAll");
 }
 
 const int w = 6;
@@ -59,7 +68,7 @@ void COMMONTEST(T& s)
 	Push(s, 2);
 	Push(s, 3);
 	Push(s, 4);
-	Title("COMMONTEST");
+	EndTitle("COMMONTEST");
 }
 
 template <typename T>
@@ -75,7 +84,23 @@ void IteratorTest(T& s)
 		std::cout << *it << std::endl;
 		++it;
 	}
-	Title("IteratorTest");
+	EndTitle("IteratorTest");
+}
+
+template <typename T>
+void IteratorTest(const T& s)
+{
+	Title("const IteratorTest");
+	typename T::const_iterator it = s.begin();
+	typename T::const_iterator ite = s.end();
+	++it;
+	--it;
+	while (it != ite)
+	{
+		std::cout << *it << std::endl;
+		++it;
+	}
+	EndTitle("IteratorTest");
 }
 
 template <typename T>
@@ -91,5 +116,21 @@ void ReverseIteratorTest(T& s)
 		std::cout << *it << std::endl;
 		++it;
 	}
-	Title("ReverseIteratorTest");
+	EndTitle("ReverseIteratorTest");
+}
+
+template <typename T>
+void ReverseIteratorTest(const T& s)
+{
+	Title("const ReverseIteratorTest");
+	typename T::const_reverse_iterator it = s.rbegin();
+	typename T::const_reverse_iterator ite = s.rend();
+	++it;
+	--it;
+	while (it != ite)
+	{
+		std::cout << *it << std::endl;
+		++it;
+	}
+	EndTitle("ReverseIteratorTest");
 }
