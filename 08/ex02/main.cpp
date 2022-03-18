@@ -59,9 +59,9 @@ int main()
 			std::cout << std::endl;
 			ColorMessage(GREEN, "CopyConstMutantStack");
 			MutantStack<int> mstack;
-			mstack.push(1);
-			mstack.push(2);
-			mstack.push(3);
+			Push(mstack, 1);
+			Push(mstack, 2);
+			Push(mstack, 3);
 			const MutantStack<int> ccmstack(mstack);
 			IteratorTest(ccmstack);
 			ReverseIteratorTest(ccmstack);
