@@ -10,7 +10,7 @@ void OutAll(std::stack<T> s)
 
 int main()
 {
-	{
+		/* MutantStack */
 		std::cout << "MutantStack" << std::endl;
 		MutantStack<int> mstack;
 		mstack.push(5);
@@ -25,9 +25,9 @@ int main()
 		while (it != ite) {
 			std::cout << *it << std::endl;
 		++it; }
-		std::stack<int> s(mstack); return 0;
-	}
-	{
+
+		/* stack */
+		std::stack<int> s(mstack);
 		std::cout << "stack" << std::endl;
 		std::stack<int> oristack;
 		oristack.push(5);
@@ -43,5 +43,4 @@ int main()
 		//	std::cout << *it << std::endl;
 		//++it; }
 		//std::stack<int> s(oristack); return 0;
-	}
 }
