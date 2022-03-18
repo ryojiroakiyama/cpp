@@ -17,7 +17,7 @@ static void EndTitle(std::string its_title)
 }
 
 template <typename T>
-void OutAll(std::stack<T> s)
+void OutAll(std::stack<T>& s)
 {
 	Title("OutAll");
 	while (!s.empty())

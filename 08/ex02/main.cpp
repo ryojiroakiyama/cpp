@@ -31,8 +31,8 @@ int main()
 	//}
 
 	/* Additional Test */
+	/* Stack */
 	{
-		/* Stack */
 		std::cout << std::endl;
 		ColorMessage(GREEN, "Stack");
 		std::stack<int> oristack;
@@ -47,24 +47,30 @@ int main()
 		IteratorTest(mstack);
 		ReverseIteratorTest(mstack);
 		OutAll(mstack);
-
-		/* copy Stack */
+	}
+	/* copy Stack */
+	{
 		std::cout << std::endl;
 		ColorMessage(GREEN, "CopyStack");
+		MutantStack<int> mstack;
+		Push(mstack, 432);
+		Push(mstack, 5454);
+		Push(mstack, 654);
+		std::cout << "copy mutant stack -> stack" << std::endl;
 		std::stack<int> copystack(mstack);
 		OutAll(copystack);
-
-		{
-			/* copy & const MutantStack */
-			std::cout << std::endl;
-			ColorMessage(GREEN, "CopyConstMutantStack");
-			MutantStack<int> mstack;
-			Push(mstack, 1);
-			Push(mstack, 2);
-			Push(mstack, 3);
-			const MutantStack<int> ccmstack(mstack);
-			IteratorTest(ccmstack);
-			ReverseIteratorTest(ccmstack);
-		}
+	}
+	/* copy & const MutantStack */
+	{
+		std::cout << std::endl;
+		ColorMessage(GREEN, "CopyConstMutantStack");
+		MutantStack<int> mstack;
+		Push(mstack, 1);
+		Push(mstack, 2);
+		Push(mstack, 3);
+		std::cout << "copy mutant stack -> const mutant stack" << std::endl;
+		const MutantStack<int> ccmstack(mstack);
+		IteratorTest(ccmstack);
+		ReverseIteratorTest(ccmstack);
 	}
 }
