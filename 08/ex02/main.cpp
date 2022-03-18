@@ -6,6 +6,11 @@
 template <typename T>
 void OutAll(std::stack<T> s)
 {
+	while (!s.empty())
+	{
+		std::cout << s.top() << std::endl;
+		s.pop();
+	}
 }
 
 int main()
@@ -26,8 +31,14 @@ int main()
 			std::cout << *it << std::endl;
 		++it; }
 
+		/* copy stack */
+		std::cout << std::endl;
+		std::cout << "copy stack" << std::endl;
+		std::stack<int> copystack(mstack);
+		OutAll(copystack);
+
 		/* stack */
-		std::stack<int> s(mstack);
+		std::cout << std::endl;
 		std::cout << "stack" << std::endl;
 		std::stack<int> oristack;
 		oristack.push(5);
@@ -36,6 +47,7 @@ int main()
 		oristack.pop();
 		std::cout << oristack.size() << std::endl;
 		oristack.push(3); oristack.push(5); oristack.push(737); //[...] oristack.push(0);
+		OutAll(oristack);
 		//std::stack<int>::iterator it = oristack.begin(); std::stack<int>::iterator ite = oristack.end();
 		//++it;
 		//--it;
