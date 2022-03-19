@@ -1,11 +1,15 @@
 #include "span.hpp"
 #include <iostream>
+#include <algorithm>
+#include <numeric>
+#include <vector>
 
 // construct and destruct
+Span::Span() {}
 Span::Span(const unsigned int content_size) : capacity_(content_size) {}
 Span::~Span() {}
 
-Span::Span(Span const &other) : capacity_(other.capacity_)
+Span::Span(Span const &other)
 {
 	*this = other;
 }
@@ -39,23 +43,12 @@ bool Span::addNumber(const int num)
 
 unsigned int Span::shortestSpan() const
 {
-	typedef Span::ContainerType::const_iterator Iterator;
-
 	if (this->container_.size() < 2)
 		throw Span::NoSpan();
 
-	Iterator 		itBegin = this->container_.begin();
-	Iterator		itEnd = this->container_.end();
-	unsigned int	min_span = Span::longestSpan();
-	unsigned int	prev_value = *(itBegin);
-	for (Iterator it = ++itBegin; it != itEnd; it++)
-	{
-		unsigned int Span = *it - prev_value;
-		if (Span < min_span)
-			min_span = Span;
-		prev_value = *it;
-	}
-	return min_span;
+	std::vector<Span::ContentType> diffs(this->container_.begin(), this->container_.end());
+	std::adjacent_difference(this->container_.begin(), this->container_.end(), diffs.begin());
+	return *std::min_element(diffs.begin(), diffs.end());
 }
 
 unsigned int Span::longestSpan() const

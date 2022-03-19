@@ -10,7 +10,8 @@
 class Span
 {
 	public:
-		typedef std::set<int> ContainerType;
+		typedef int ContentType;
+		typedef std::set<ContentType> ContainerType;
 		Span(const unsigned int content_size);
 		~Span();
 		Span(Span const &other);
