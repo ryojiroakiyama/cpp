@@ -5,70 +5,55 @@
 #include <stack>
 #include <list>
 
-static void ColorMessage(const std::string color, const std::string message)
-{
-	std::cout << color << message << RESET << std::endl;
-}
-
 int main()
 {
-	/* provided test */
-	//{
-	//	MutantStack<int> mstack;
-	//	mstack.push(5);
-	//	mstack.push(17);
-	//	std::cout << mstack.top() << std::endl;
-	//	mstack.pop();
-	//	std::cout << mstack.size() << std::endl;
-	//	mstack.push(3); mstack.push(5); mstack.push(737); //[...] mstack.push(0);
-	//	MutantStack<int>::iterator it = mstack.begin(); MutantStack<int>::iterator ite = mstack.end();
-	//	++it;
-	//	--it;
-	//	while (it != ite) {
-	//		std::cout << *it << std::endl;
-	//	++it; }
-	//	std::stack<int> s(mstack);
-	//}
-
-	/* Additional Test */
-	/* Stack */
+/*
 	{
 		std::cout << std::endl;
-		ColorMessage(GREEN, "Stack");
+		std::cout << GREEN << "provided test" << RESET << std::endl;
+		MutantStack<int> mstack;
+		mstack.push(5);
+		mstack.push(17);
+		std::cout << mstack.top() << std::endl;
+		mstack.pop();
+		std::cout << mstack.size() << std::endl;
+		mstack.push(3);
+		mstack.push(5);
+		mstack.push(737);
+		mstack.push(0);
+		MutantStack<int>::iterator it = mstack.begin(); MutantStack<int>::iterator ite = mstack.end();
+		++it;
+		--it;
+		while (it != ite) {
+			std::cout << *it << std::endl;
+		++it; }
+		std::stack<int> s(mstack);
+	}
+*/
+
+	/* Additional Test */
+	{
+		std::cout << std::endl;
+		std::cout << GREEN << "Stack" << RESET << std::endl;
 		std::stack<int> oristack;
 		COMMONTEST(oristack);
 		OutAll(oristack);
 
-		/* MutantStack */
 		std::cout << std::endl;
-		ColorMessage(GREEN, "MutantStack");
+		std::cout << GREEN << "MutantStack" << RESET << std::endl;
 		MutantStack<int> mstack;
 		COMMONTEST(mstack);
 		IteratorTest(mstack);
 		ReverseIteratorTest(mstack);
 		OutAll(mstack);
-	}
-	/* copy Stack */
-	{
+
 		std::cout << std::endl;
-		ColorMessage(GREEN, "CopyStack");
-		MutantStack<int> mstack;
-		Push(mstack, 432);
-		Push(mstack, 5454);
-		Push(mstack, 654);
-		std::cout << "copy mutant stack -> stack" << std::endl;
+		std::cout << GREEN << "Stack(MutantStack)" << RESET << std::endl;
 		std::stack<int> copystack(mstack);
 		OutAll(copystack);
-	}
-	/* copy & const MutantStack */
-	{
+
 		std::cout << std::endl;
-		ColorMessage(GREEN, "CopyConstMutantStack");
-		MutantStack<int> mstack;
-		Push(mstack, 1);
-		Push(mstack, 2);
-		Push(mstack, 3);
-		std::cout << "copy mutant stack -> const mutant stack" << std::endl;
+		std::cout << GREEN << "const MutantStack(MutantStack)" << RESET << std::endl;
 		const MutantStack<int> ccmstack(mstack);
 		IteratorTest(ccmstack);
 		ReverseIteratorTest(ccmstack);

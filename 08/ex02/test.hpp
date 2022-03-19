@@ -17,7 +17,7 @@ static void EndTitle(std::string its_title)
 }
 
 template <typename T>
-void OutAll(std::stack<T>& s)
+void OutAll(std::stack<T> s)
 {
 	Title("OutAll");
 	while (!s.empty())
@@ -53,7 +53,7 @@ void Top(T& s)
 template <typename T>
 void Size(T& s)
 {
-	std::cout << std::setw(w) << "size: " << s.size() << std::endl;
+	std::cout << CYAN << std::setw(w) << "size: " << s.size() << RESET << std::endl;
 }
 
 template <typename T>
