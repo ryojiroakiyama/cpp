@@ -50,8 +50,10 @@ int main()
 		std::cout << std::endl;
 		const unsigned int cap = 100000;
 		Span s(cap);
+		int array[cap];
 		for (unsigned int i = 0; i < cap; i++)
-			s.addNumber(i);
+			array[i] = i;
+		s.addNumber(array, array + cap);
 		SpanInfo(s);
 		TestAll(s, cap);
 	}

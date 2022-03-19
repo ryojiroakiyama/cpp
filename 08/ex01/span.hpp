@@ -17,9 +17,13 @@ class Span
 		Span(Span const &other);
 		Span &operator=(Span const &other);
 
+		template <typename Iterator>
+		Iterator addNumber(Iterator begin, Iterator end);
+
+		bool addNumber(const int num);
+
 		unsigned int shortestSpan() const;
 		unsigned int longestSpan() const;
-		bool addNumber(const int num);
 
 		unsigned int getCapacity() const;
 		ContainerType::const_iterator getIterBegin() const;
@@ -43,6 +47,27 @@ class Span
 		ContainerType container_;
 		unsigned int capacity_;
 };
+
+template <typename Iterator>
+Iterator Span::addNumber(Iterator itbegin, Iterator itend)
+{
+	Iterator it = itbegin;
+	while (it != itend)
+	{
+		if (this->container_.size() < this->capacity_)
+		{
+			bool is_inserted = (this->container_.insert(*it)).second;
+			if (!is_inserted)
+				break;
+		}
+		else
+		{
+			throw Span::OutRange();
+		}
+		it++;
+	}
+	return it;
+}
 
 std::ostream &operator<<(std::ostream &os, Span const &Span);
 
