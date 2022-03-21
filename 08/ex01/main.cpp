@@ -57,4 +57,21 @@ int main()
 		SpanInfo(s);
 		TestAll(s, cap);
 	}
+	{
+		std::cout << std::endl;
+		const unsigned int	cap = 10;
+		Span s(cap);
+		TestAddNumber(s, 3);
+		TestAddNumber(s, 149);
+		TestAddNumber(s, 270);
+		TestAddNumber(s, 281);
+		TestAddNumber(s, 407);
+		TestAddNumber(s, 502);
+		TestAddNumber(s, 671);
+		TestAddNumber(s, 900);
+		TestAddNumber(s, 904);
+		TestAddNumber(s, 926);
+		SpanInfo(s);
+		TestAll(s, 5);
+	}
 }

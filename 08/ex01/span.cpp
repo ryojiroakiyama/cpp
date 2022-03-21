@@ -46,9 +46,12 @@ unsigned int Span::shortestSpan() const
 	if (this->container_.size() < 2)
 		throw Span::NoSpan();
 
-	std::vector<Span::ContentType> diffs(this->container_.begin(), this->container_.end());
-	std::adjacent_difference(this->container_.begin(), this->container_.end(), diffs.begin());
-	return *std::min_element(diffs.begin(), diffs.end());
+	Span::ContainerType::const_iterator	itBegin = this->container_.begin();
+	Span::ContainerType::const_iterator	itEnd = this->container_.end();
+	std::vector<Span::ContentType>		diffs(itBegin, itEnd);
+
+	std::adjacent_difference(itBegin, itEnd, diffs.begin());
+	return *std::min_element(++(diffs.begin()), diffs.end());
 }
 
 unsigned int Span::longestSpan() const
